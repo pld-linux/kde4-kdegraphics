@@ -436,7 +436,7 @@ Programa de captura de tela.
 Summary:	Scalable Vector Graphics for KDE
 Summary(pl.UTF-8):	Skalowalna grafika wektorowa (SVG) dla KDE
 Group:		X11/Applications/Graphics
-Requires:	kdelibs >= %{_minlibsevr}
+Requires:	kde4-kdelibs
 
 %description ksvg
 KSVG is a KDE implementation of the Scalable Vector Graphics
