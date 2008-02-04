@@ -12,7 +12,7 @@ Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 %define	orgname	kdegraphics
 Name:		kde4-kdegraphics
 Version:	4.0.0
-Release:	0.1
+Release:	0.2
 Epoch:		0
 License:	GPL
 Group:		X11/Applications/Graphics
@@ -21,10 +21,14 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/latest/src/%{orgname}-%{version}.ta
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	chmlib-devel
+BuildRequires:	djvulibre-devel
 BuildRequires:	ed
+BuildRequires:	exiv2-devel
 BuildRequires:	fribidi-devel >= 0.10.4
 %{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
 BuildRequires:	gettext-devel
+BuildRequires:	ghostscript-devel
 BuildRequires:	giflib-devel
 BuildRequires:	imlib-devel
 BuildRequires:	kde4-kdelibs-devel
@@ -38,6 +42,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	libxml2-progs
+BuildRequires:	poppler-Qt-devel
 BuildRequires:	poppler-qt-devel
 %{?with_hidden_visibility:BuildRequires:	qt-devel >= 6:3.3.5.051113-1}
 BuildRequires:	rpmbuild(macros) >= 1.129
@@ -283,6 +288,27 @@ Okular.
 %description okular -l pl.UTF-8
 Okular.
 
+%package gwenview
+Summary:	Simple image viewer for KDE
+Summary(pl.UTF-8):	Prosta przeglądarka obrazków dla KDE
+Group:		X11/Applications/Graphics
+Requires:	kde4-kdelibs
+
+%description gwenview
+Gwenview is an image viewer for KDE.
+
+It features a folder tree window and a file list window to provide
+easy navigation in your file hierarchy. Image loading is done by the
+Qt library, so it supports all image formats your Qt installation
+supports.
+
+%description gwenview -l pl.UTF-8
+Gwenview to przeglądarka obrazków dla KDE. Ma okno z drzewem katalogów
+oraz okno z listą plików w celu zapewnienia łatwej nawigacji w
+hierarchii plików. Wczytywanie obrazków jest wykonywane przez
+bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
+obsługiwane przez zainstalowaną wersję Qt.
+
 %prep
 %setup -q -n %{orgname}-%{version}
 
@@ -317,6 +343,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libkolourpaint4_lgpl.so
 %attr(755,root,root) %{_libdir}/libokularcore.so
+%attr(755,root,root) %{_libdir}/libgwenviewlib.so
+%attr(755,root,root) %{_libdir}/libspectreOkular.so
 %{_includedir}/okular
 
 %files kamera
@@ -337,6 +365,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/kde4/gsthumbnail.so
 %{_datadir}/kde4/services/gsthumbnail.desktop
+### ????
+%attr(755,root,root) %{_libdir}/strigi/strigita_dvi.so
+%attr(755,root,root) %{_libdir}/strigi/strigita_ico.so
 
 %files kgamma
 %defattr(644,root,root,755)
@@ -391,6 +422,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libokularcore.so.*.*.*
 %attr(755,root,root) %{_libdir}/kde4/okular*.so
 %ghost %attr(755,root,root) %{_libdir}/libokularcore.so.?
+%attr(755,root,root) %{_libdir}/libspectreOkular.so.*.*.*
+%ghost %attr(755,root,root) %{_libdir}/libspectreOkular.so.?
 %{_desktopdir}/kde4/okular*.desktop
 %{_datadir}/apps/okular
 %{_datadir}/config.kcfg/okular.kcfg
@@ -399,3 +432,19 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/okular*.desktop
 %{_datadir}/kde4/services/libokular*.desktop
 %{_datadir}/kde4/servicetypes/okular*.desktop
+
+%files gwenview
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/gwenview
+%attr(755,root,root) %{_libdir}/kde4/gvpart.so
+%attr(755,root,root) %{_libdir}/kde4/kio_msits.so
+%ghost %attr(755,root,root) %{_libdir}/libgwenviewlib.so.?
+%attr(755,root,root) %{_libdir}/libgwenviewlib.so.*.*.*
+/usr/share/applications/kde4/gwenview.desktop
+/usr/share/apps/gwenview/gwenviewui.rc
+/usr/share/icons/oxygen/*x*/apps/gwenview.png
+/usr/share/icons/oxygen/scalable/apps/gwenview.svgz
+/usr/share/kde4/services/msits.protocol
+/usr/share/kde4/services/gvpart.desktop
+/usr/share/apps/gvpart/gvpart.rc
+                                                                     
