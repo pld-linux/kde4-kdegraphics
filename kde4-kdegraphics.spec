@@ -133,7 +133,7 @@ bibliotecas do kdegraphics.
 Summary:	Digital camera support
 Summary(pl.UTF-8):	Obsługa kamer cyfrowych
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core
+Requires:	kde4-kdebase-core >= %{version}
 
 %description kamera
 kamera is an IO slave and a KControl panel module which allows you to
@@ -181,7 +181,7 @@ dodatkową zakładkę z rozszerzonymi informacjami o pliku.
 Summary:	A monitor calibration tool
 Summary(pl.UTF-8):	Narzędzie do kalibracji monitora
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core > %{version}
+Requires:	kde4-kdebase-core >= %{version}
 
 %description kgamma
 A monitor calibration tool.
