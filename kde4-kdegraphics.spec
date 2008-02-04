@@ -3,7 +3,7 @@
 %bcond_with	protections		# protections against fair use (printing and copying)
 %bcond_without	hidden_visibility	# no gcc hidden visibility
 #
-%define		_state		stable
+%define		_state		unstable
 
 Summary:	K Desktop Environment - Graphic Applications
 Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
@@ -11,12 +11,12 @@ Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 %define	orgname	kdegraphics
 Name:		kde4-kdegraphics
-Version:	4.0.0
-Release:	0.2
+Version:	4.0.60
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/latest/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	6cad7b165d99c43d1a19a0350598821c
+# Source0-md5:	e84096cdb1792b438443a6b59f26bebf
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -30,7 +30,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	ghostscript-devel
 BuildRequires:	giflib-devel
 BuildRequires:	imlib-devel
-BuildRequires:	kde4-kdelibs-devel
+BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kpathsea
 BuildRequires:	lcms-devel
 BuildRequires:	libgphoto2-devel
@@ -155,7 +155,7 @@ aparatu przez URL kamera:/.
 Summary:	Color chooser
 Summary(pl.UTF-8):	Program do wybierania kolorów
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdelibs
+Requires:	kde4-kdelibs >= %{version}
 
 %description kcolorchooser
 Color chooser.
@@ -181,7 +181,7 @@ dodatkową zakładkę z rozszerzonymi informacjami o pliku.
 Summary:	A monitor calibration tool
 Summary(pl.UTF-8):	Narzędzie do kalibracji monitora
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core
+Requires:	kde4-kdebase-core > %{version}
 
 %description kgamma
 A monitor calibration tool.
@@ -194,7 +194,7 @@ Summary:	KDE Painter
 Summary(pl.UTF-8):	Program graficzny KDE
 Summary(pt_BR.UTF-8):	Editor básico de imagens bitmap
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core
+Requires:	kde4-kdebase-core >= %{version}
 
 %description kolourpaint
 A (very) simple painting program for KDE.
@@ -210,7 +210,7 @@ Summary:	Scanning tool
 Summary(pl.UTF-8):	Narzędzie do skanowania
 Summary(pt_BR.UTF-8):	Um programa de rasterização de imagens, baseado no SANE e libkscan
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core
+Requires:	kde4-kdebase-core >= %{version}
 
 %description kscanservice
 Kooka is a KDE application that enables easy scanning using SANE
@@ -228,7 +228,7 @@ Summary:	KRuler
 Summary(pl.UTF-8):	Linijka dla KDE
 Summary(pt_BR.UTF-8):	Régua de pixels para a tela
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core
+Requires:	kde4-kdebase-core >= %{version}
 
 %description kruler
 KRuler is a very simple application, with only one aim in life. To
@@ -246,7 +246,7 @@ Summary:	KDE Snap Shot
 Summary(pl.UTF-8):	Program do przechwytywania ekranu dla KDE
 Summary(pt_BR.UTF-8):	Programa de captura de tela
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core
+Requires:	kde4-kdebase-core >= %{version}
 
 %description ksnapshot
 KSnapshot is a simple application for taking screenshots. It is
@@ -265,7 +265,7 @@ Programa de captura de tela.
 Summary:	Scalable Vector Graphics for KDE
 Summary(pl.UTF-8):	Skalowalna grafika wektorowa (SVG) dla KDE
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdelibs
+Requires:	kde4-kdelibs >= %{version}
 
 %description svgpart
 KSVG is a KDE implementation of the Scalable Vector Graphics
@@ -279,7 +279,7 @@ wektorowej (SVG - Scalable Vector Graphics).
 Summary:	KDE okular
 Summary(pl.UTF-8):	KDE okular
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdelibs
+Requires:	kde4-kdelibs >= %{version}
 
 %description okular
 Okular.
@@ -291,7 +291,7 @@ Okular.
 Summary:	Simple image viewer for KDE
 Summary(pl.UTF-8):	Prosta przeglądarka obrazków dla KDE
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdelibs
+Requires:	kde4-kdelibs >= %{version}
 
 %description gwenview
 Gwenview is an image viewer for KDE.
@@ -369,7 +369,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/gsthumbnail.desktop
 ### ????
 %attr(755,root,root) %{_libdir}/strigi/strigita_dvi.so
-%attr(755,root,root) %{_libdir}/strigi/strigita_ico.so
+#%attr(755,root,root) %{_libdir}/strigi/strigita_ico.so
 
 %files kgamma
 %defattr(644,root,root,755)
@@ -449,6 +449,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/msits.protocol
 %{_datadir}/kde4/services/gvpart.desktop
 %{_desktopdir}/kde4/gwenview.desktop
-%{_iconsdir}/oxygen/*x*/apps/gwenview.png
-%{_iconsdir}/oxygen/scalable/apps/gwenview.svgz
+%{_iconsdir}/*/*/apps/gwenview.png
+%{_iconsdir}/*/scalable/apps/gwenview.svgz
+%{_kdedocdir}/en/gwenview
                                                                      
