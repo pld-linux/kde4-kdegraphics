@@ -427,14 +427,14 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %attr(755,root,root) %{_libdir}/libokularcore.so.?
 %attr(755,root,root) %{_libdir}/libspectreOkular.so.*.*.*
 %ghost %attr(755,root,root) %{_libdir}/libspectreOkular.so.?
-%{_desktopdir}/kde4/okular*.desktop
 %{_datadir}/apps/okular
 %{_datadir}/config.kcfg/okular.kcfg
 %{_datadir}/config/okular.knsrc
-%{_kdedocdir}/en/okular
 %{_datadir}/kde4/services/okular*.desktop
 %{_datadir}/kde4/services/libokular*.desktop
 %{_datadir}/kde4/servicetypes/okular*.desktop
+%{_desktopdir}/kde4/okular*.desktop
+%{_kdedocdir}/en/okular
 
 %files gwenview
 %defattr(644,root,root,755)
@@ -443,13 +443,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde4/kio_msits.so
 %ghost %attr(755,root,root) %{_libdir}/libgwenviewlib.so.?
 %attr(755,root,root) %{_libdir}/libgwenviewlib.so.*.*.*
-%{_datadir}/applications/kde4/gwenview.desktop
 %dir %{_datadir}/apps/gwenview
 %{_datadir}/apps/gwenview/gwenviewui.rc
-%{_datadir}/icons/oxygen/*x*/apps/gwenview.png
-%{_datadir}/icons/oxygen/scalable/apps/gwenview.svgz
-%{_datadir}/kde4/services/msits.protocol
-%{_datadir}/kde4/services/gvpart.desktop
 %dir %{_datadir}/apps/gvpart
 %{_datadir}/apps/gvpart/gvpart.rc
+%{_datadir}/kde4/services/msits.protocol
+%{_datadir}/kde4/services/gvpart.desktop
+%{_desktopdir}/kde4/gwenview.desktop
+%{_iconsdir}/oxygen/*x*/apps/gwenview.png
+%{_iconsdir}/oxygen/scalable/apps/gwenview.svgz
                                                                      
