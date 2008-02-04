@@ -333,6 +333,9 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	gwenview	-p /sbin/ldconfig
+%postun	gwenview	-p /sbin/ldconfig
+
 %post	kolourpaint	-p /sbin/ldconfig
 %postun	kolourpaint	-p /sbin/ldconfig
 
