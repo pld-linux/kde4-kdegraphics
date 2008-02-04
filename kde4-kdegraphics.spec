@@ -443,11 +443,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde4/kio_msits.so
 %ghost %attr(755,root,root) %{_libdir}/libgwenviewlib.so.?
 %attr(755,root,root) %{_libdir}/libgwenviewlib.so.*.*.*
-/usr/share/applications/kde4/gwenview.desktop
-/usr/share/apps/gwenview/gwenviewui.rc
-/usr/share/icons/oxygen/*x*/apps/gwenview.png
-/usr/share/icons/oxygen/scalable/apps/gwenview.svgz
-/usr/share/kde4/services/msits.protocol
-/usr/share/kde4/services/gvpart.desktop
-/usr/share/apps/gvpart/gvpart.rc
+%{_datadir}/applications/kde4/gwenview.desktop
+%dir %{_datadir}/apps/gwenview
+%{_datadir}/apps/gwenview/gwenviewui.rc
+%{_datadir}/icons/oxygen/*x*/apps/gwenview.png
+%{_datadir}/icons/oxygen/scalable/apps/gwenview.svgz
+%{_datadir}/kde4/services/msits.protocol
+%{_datadir}/kde4/services/gvpart.desktop
+%dir %{_datadir}/apps/gvpart
+%{_datadir}/apps/gvpart/gvpart.rc
                                                                      
