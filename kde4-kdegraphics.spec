@@ -383,7 +383,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kolourpaint4
 %attr(755,root,root) %{_libdir}/libkolourpaint4_lgpl.so.*.*.*
-%attr(755,root,root) %ghost %attr(755,root,root) %{_libdir}/libkolourpaint4_lgpl.so.?
+%attr(755,root,root) %ghost %{_libdir}/libkolourpaint4_lgpl.so.?
 %{_datadir}/apps/kolourpaint4
 %{_desktopdir}/kde4/kolourpaint4.desktop
 %{_iconsdir}/*/*/apps/kolourpaint4.*
@@ -423,9 +423,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/okular
 %attr(755,root,root) %{_libdir}/libokularcore.so.*.*.*
 %attr(755,root,root) %{_libdir}/kde4/okular*.so
-%attr(755,root,root) %ghost %attr(755,root,root) %{_libdir}/libokularcore.so.?
+%attr(755,root,root) %ghost %{_libdir}/libokularcore.so.?
 %attr(755,root,root) %{_libdir}/libspectreOkular.so.*.*.*
-%attr(755,root,root) %ghost %attr(755,root,root) %{_libdir}/libspectreOkular.so.?
+%attr(755,root,root) %ghost %{_libdir}/libspectreOkular.so.?
 %{_datadir}/apps/okular
 %{_datadir}/config.kcfg/okular.kcfg
 %{_datadir}/config/okular.knsrc
@@ -440,7 +440,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gwenview
 %attr(755,root,root) %{_libdir}/kde4/gvpart.so
 %attr(755,root,root) %{_libdir}/kde4/kio_msits.so
-%attr(755,root,root) %ghost %attr(755,root,root) %{_libdir}/libgwenviewlib.so.?
+%attr(755,root,root) %ghost %{_libdir}/libgwenviewlib.so.?
 %attr(755,root,root) %{_libdir}/libgwenviewlib.so.*.*.*
 %dir %{_datadir}/apps/gwenview
 %{_datadir}/apps/gwenview/gwenviewui.rc
