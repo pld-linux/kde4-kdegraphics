@@ -5,11 +5,11 @@
 #
 %define		_state		unstable
 
+%define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
 Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
-%define	orgname	kdegraphics
 Name:		kde4-kdegraphics
 Version:	4.0.60
 Release:	0.1
@@ -115,9 +115,9 @@ Summary:	kdegraphics development files
 Summary(pl.UTF-8):	Pliki dla programistów kdegraphics
 Summary(pt_BR.UTF-8):	Arquivos de inclusão para compilação de aplicações com kdegraphics
 Group:		X11/Development/Libraries
-Requires:	kde4-kdelibs-devel
-Requires:	%{name}-okular = %{version}
 Requires:	%{name}-kolourpaint = %{version}
+Requires:	%{name}-okular = %{version}
+Requires:	kde4-kdelibs-devel
 
 %description devel
 kdegraphics development files.
@@ -144,12 +144,12 @@ configure your camera model and port type from a list in KControl,
 then start accessing the camera contents with a kamera:/ URL.
 
 %description kamera -l pl.UTF-8
-kamera to moduł IO slave oraz panelu KControl umożliwiający dostęp do
-folderów i zdjęć w dowolnym aparacie cyfrowym obsługiwanym przez
-biblioteki gPhoto2. Jeśli mamy obsługiwany aparat, można zacząć używać
-go w większości aplikacji KDE w dwóch krokach: wybrać model i port
-aparatu z listy w KControl, a następnie odwoływać się do zawartości
-aparatu przez URL kamera:/.
+kamera to moduł IO slave oraz panelu KControl umożliwiający dostęp
+do folderów i zdjęć w dowolnym aparacie cyfrowym obsługiwanym
+przez biblioteki gPhoto2. Jeśli mamy obsługiwany aparat, można
+zacząć używać go w większości aplikacji KDE w dwóch krokach:
+wybrać model i port aparatu z listy w KControl, a następnie
+odwoływać się do zawartości aparatu przez URL kamera:/.
 
 %package kcolorchooser
 Summary:	Color chooser
@@ -174,8 +174,8 @@ This package adds a fold to konqueror "file properties" dialog window
 with file enhanced informations.
 
 %description kfile -l pl.UTF-8
-Ten pakiet dodaje do okna dialogowego "właściwości pliku" konquerora
-dodatkową zakładkę z rozszerzonymi informacjami o pliku.
+Ten pakiet dodaje do okna dialogowego "właściwości pliku"
+konquerora dodatkową zakładkę z rozszerzonymi informacjami o pliku.
 
 %package kgamma
 Summary:	A monitor calibration tool
@@ -235,8 +235,8 @@ KRuler is a very simple application, with only one aim in life. To
 measure distances on your screen.
 
 %description kruler -l pl.UTF-8
-KRuler jest prostą aplikacją, z tylko jednym celem w życiu: mierzenie
-odległości na ekranie.
+KRuler jest prostą aplikacją, z tylko jednym celem w życiu:
+mierzenie odległości na ekranie.
 
 %description kruler -l pt_BR.UTF-8
 Régua de pixels para a tela.
@@ -255,8 +255,8 @@ single window. The images can then be saved in a variety of formats.
 
 %description ksnapshot -l pl.UTF-8
 KSnapshot to prosta aplikacja do robienia zrzutów ekranu. Potrafi
-przechwytywać obraz całego pulpitu lub tylko pojedynczego okna. Obrazy
-mogą być następnie zapisane w wielu formatach.
+przechwytywać obraz całego pulpitu lub tylko pojedynczego okna.
+Obrazy mogą być następnie zapisane w wielu formatach.
 
 %description ksnapshot -l pt_BR.UTF-8
 Programa de captura de tela.
@@ -302,10 +302,10 @@ Qt library, so it supports all image formats your Qt installation
 supports.
 
 %description gwenview -l pl.UTF-8
-Gwenview to przeglądarka obrazków dla KDE. Ma okno z drzewem katalogów
-oraz okno z listą plików w celu zapewnienia łatwej nawigacji w
-hierarchii plików. Wczytywanie obrazków jest wykonywane przez
-bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
+Gwenview to przeglądarka obrazków dla KDE. Ma okno z drzewem
+katalogów oraz okno z listą plików w celu zapewnienia łatwej
+nawigacji w hierarchii plików. Wczytywanie obrazków jest wykonywane
+przez bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
 obsługiwane przez zainstalowaną wersję Qt.
 
 %prep
@@ -316,9 +316,9 @@ export QTDIR=%{_prefix}
 install -d build
 cd build
 %cmake \
-        -DCMAKE_INSTALL_PREFIX=%{_prefix} \
-        -DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
-        ../
+		-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+		-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
+		../
 
 %{__make}
 
@@ -383,7 +383,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kolourpaint4
 %attr(755,root,root) %{_libdir}/libkolourpaint4_lgpl.so.*.*.*
-%ghost %attr(755,root,root) %{_libdir}/libkolourpaint4_lgpl.so.?
+%attr(755,root,root) %ghost %attr(755,root,root) %{_libdir}/libkolourpaint4_lgpl.so.?
 %{_datadir}/apps/kolourpaint4
 %{_desktopdir}/kde4/kolourpaint4.desktop
 %{_iconsdir}/*/*/apps/kolourpaint4.*
@@ -423,9 +423,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/okular
 %attr(755,root,root) %{_libdir}/libokularcore.so.*.*.*
 %attr(755,root,root) %{_libdir}/kde4/okular*.so
-%ghost %attr(755,root,root) %{_libdir}/libokularcore.so.?
+%attr(755,root,root) %ghost %attr(755,root,root) %{_libdir}/libokularcore.so.?
 %attr(755,root,root) %{_libdir}/libspectreOkular.so.*.*.*
-%ghost %attr(755,root,root) %{_libdir}/libspectreOkular.so.?
+%attr(755,root,root) %ghost %attr(755,root,root) %{_libdir}/libspectreOkular.so.?
 %{_datadir}/apps/okular
 %{_datadir}/config.kcfg/okular.kcfg
 %{_datadir}/config/okular.knsrc
@@ -440,7 +440,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gwenview
 %attr(755,root,root) %{_libdir}/kde4/gvpart.so
 %attr(755,root,root) %{_libdir}/kde4/kio_msits.so
-%ghost %attr(755,root,root) %{_libdir}/libgwenviewlib.so.?
+%attr(755,root,root) %ghost %attr(755,root,root) %{_libdir}/libgwenviewlib.so.?
 %attr(755,root,root) %{_libdir}/libgwenviewlib.so.*.*.*
 %dir %{_datadir}/apps/gwenview
 %{_datadir}/apps/gwenview/gwenviewui.rc
@@ -452,4 +452,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/apps/gwenview.png
 %{_iconsdir}/*/scalable/apps/gwenview.svgz
 %{_kdedocdir}/en/gwenview
-                                                                     
