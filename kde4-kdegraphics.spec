@@ -167,7 +167,7 @@ Program do wybierania kolorów.
 Summary:	Graphic formats enhanced information
 Summary(pl.UTF-8):	Rozszerzone informacje o plikach graficznych
 Group:		X11/Applications/Graphics
-Requires:	konqueror4 >= %{version}
+Requires:	kde4-konqueror >= %{version}
 
 %description kfile
 This package adds a fold to konqueror "file properties" dialog window
