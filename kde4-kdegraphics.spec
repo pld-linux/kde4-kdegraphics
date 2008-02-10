@@ -11,12 +11,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.0.60
-Release:	0.2
+Version:	4.0.61
+Release:	0.1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/latest/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	e84096cdb1792b438443a6b59f26bebf
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
+# Source0-md5:	978810480b0486c3f90996dadf04d4bc
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -37,6 +37,7 @@ BuildRequires:	libgphoto2-devel
 BuildRequires:	libieee1284-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.0.8
+BuildRequires:	libspectre-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libxml2-devel
@@ -346,7 +347,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkolourpaint4_lgpl.so
 %attr(755,root,root) %{_libdir}/libokularcore.so
 %attr(755,root,root) %{_libdir}/libgwenviewlib.so
-%attr(755,root,root) %{_libdir}/libspectreOkular.so
+#%attr(755,root,root) %{_libdir}/libspectreOkular.so
 %{_includedir}/okular
 
 %files kamera
@@ -424,8 +425,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libokularcore.so.*.*.*
 %attr(755,root,root) %{_libdir}/kde4/okular*.so
 %attr(755,root,root) %ghost %{_libdir}/libokularcore.so.?
-%attr(755,root,root) %{_libdir}/libspectreOkular.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libspectreOkular.so.?
+#%attr(755,root,root) %{_libdir}/libspectreOkular.so.*.*.*
+#%attr(755,root,root) %ghost %{_libdir}/libspectreOkular.so.?
 %{_datadir}/apps/okular
 %{_datadir}/config.kcfg/okular.kcfg
 %{_datadir}/config/okular.knsrc
