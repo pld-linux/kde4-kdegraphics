@@ -1,7 +1,5 @@
 #
 # Conditional build:
-%bcond_with	protections		# protections against fair use (printing and copying)
-%bcond_without	hidden_visibility	# no gcc hidden visibility
 #
 %define		_state		unstable
 
@@ -11,12 +9,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.0.62
+Version:	4.0.64
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	964f7ddce2e88dfd24ed2f387596ec6b
+# Source0-md5:	efeed1a78d5befebeaeb002816e1d0c1
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -25,7 +23,6 @@ BuildRequires:	djvulibre-devel
 BuildRequires:	ed
 BuildRequires:	exiv2-devel
 BuildRequires:	fribidi-devel >= 0.10.4
-%{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
 BuildRequires:	gettext-devel
 BuildRequires:	ghostscript-devel
 BuildRequires:	giflib-devel
@@ -44,7 +41,6 @@ BuildRequires:	libxml2-devel
 BuildRequires:	libxml2-progs
 BuildRequires:	poppler-Qt-devel
 BuildRequires:	poppler-qt-devel
-%{?with_hidden_visibility:BuildRequires:	qt-devel >= 6:3.3.5.051113-1}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sane-backends-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
