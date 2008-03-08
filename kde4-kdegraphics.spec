@@ -9,12 +9,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.0.64
+Version:	4.0.65
 Release:	0.1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	efeed1a78d5befebeaeb002816e1d0c1
+# Source0-md5:	bc8884bee3c6353db2afab8a8d8a9708
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -364,6 +364,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/kde4/gsthumbnail.so
 %{_datadir}/kde4/services/gsthumbnail.desktop
+%{_datadir}/config.kcfg/gssettings.kcfg
 ### ????
 %attr(755,root,root) %{_libdir}/strigi/strigita_dvi.so
 #%attr(755,root,root) %{_libdir}/strigi/strigita_ico.so
@@ -447,5 +448,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/gvpart.desktop
 %{_desktopdir}/kde4/gwenview.desktop
 %{_iconsdir}/*/*/apps/gwenview.png
+%{_datadir}/apps/gwenview/cursors/zoom.png
 %{_iconsdir}/*/scalable/apps/gwenview.svgz
 %{_kdedocdir}/en/gwenview
