@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
 Version:	4.0.65
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -448,6 +448,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/gvpart.desktop
 %{_desktopdir}/kde4/gwenview.desktop
 %{_iconsdir}/*/*/apps/gwenview.png
+%dir %{_datadir}/apps/gwenview/cursors
 %{_datadir}/apps/gwenview/cursors/zoom.png
 %{_iconsdir}/*/scalable/apps/gwenview.svgz
 %{_kdedocdir}/en/gwenview
