@@ -209,6 +209,7 @@ Summary(pt_BR.UTF-8):	Um programa de rasterização de imagens, baseado no SANE 
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdebase-core >= %{version}
 Obsoletes:	kde4-kdegraphics-kscanservice
+Conflicts:	kde4-kdegraphics-kscanservice
 
 %description ksane
 Ksane is a KDE application that enables easy scanning using SANE
