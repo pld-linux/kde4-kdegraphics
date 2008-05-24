@@ -9,12 +9,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.0.73
+Version:	4.0.74
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	348c881612cd6419d6759cb9811270ee
+# Source0-md5:	7d364d0ce9864d7ad037e1f043a42cf9
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -202,22 +202,23 @@ A (very) simple painting program for KDE.
 %description kolourpaint -l pt_BR.UTF-8
 Editor básico de imagens bitmap.
 
-%package kscanservice
+%package ksane
 Summary:	Scanning tool
 Summary(pl.UTF-8):	Narzędzie do skanowania
 Summary(pt_BR.UTF-8):	Um programa de rasterização de imagens, baseado no SANE e libkscan
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdebase-core >= %{version}
+Obsoletes:	kde4-kdegraphics-kscanservice
 
-%description kscanservice
-Kooka is a KDE application that enables easy scanning using SANE
+%description ksane
+Ksane is a KDE application that enables easy scanning using SANE
 libraries.
 
-%description kscanservice -l pl.UTF-8
-Kooka to aplikacja KDE umożliwiająca łatwe skanowanie przy użyciu
+%description ksane -l pl.UTF-8
+Ksane to aplikacja KDE umożliwiająca łatwe skanowanie przy użyciu
 bibliotek SANE.
 
-%description kscanservice -l pt_BR.UTF-8
+%description ksane -l pt_BR.UTF-8
 Um programa de rasterização de imagens, baseado no SANE e libkscan.
 
 %package kruler
@@ -338,13 +339,18 @@ rm -rf $RPM_BUILD_ROOT
 %post	okular		-p /sbin/ldconfig
 %postun	okular		-p /sbin/ldconfig
 
+%post	ksane		-p /sbin/ldconfig
+%postun	ksane		-p /sbin/ldconfig
+
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libkolourpaint4_lgpl.so
-%attr(755,root,root) %{_libdir}/libokularcore.so
-%attr(755,root,root) %{_libdir}/libgwenviewlib.so
-#%attr(755,root,root) %{_libdir}/libspectreOkular.so
+%{_libdir}/libkolourpaint_lgpl.so
+%{_libdir}/libokularcore.so
+%{_libdir}/libgwenviewlib.so
+%{_libdir}/libksane.so
+%{_includedir}/libksane
 %{_includedir}/okular
+%{_pkgconfigdir}/libksane.pc
 
 %files kamera
 %defattr(644,root,root,755)
@@ -365,9 +371,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde4/gsthumbnail.so
 %{_datadir}/kde4/services/gsthumbnail.desktop
 %{_datadir}/config.kcfg/gssettings.kcfg
-### ????
 %attr(755,root,root) %{_libdir}/strigi/strigita_dvi.so
-#%attr(755,root,root) %{_libdir}/strigi/strigita_ico.so
 
 %files kgamma
 %defattr(644,root,root,755)
@@ -379,19 +383,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files kolourpaint
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kolourpaint4
-%attr(755,root,root) %{_libdir}/libkolourpaint4_lgpl.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libkolourpaint4_lgpl.so.?
-%{_datadir}/apps/kolourpaint4
-%{_desktopdir}/kde4/kolourpaint4.desktop
-%{_iconsdir}/*/*/apps/kolourpaint4.*
-%{_kdedocdir}/en/kolourpaint4
-
-%files kscanservice
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/kde4/kscanplugin.so
-%{_datadir}/kde4/services/scanservice.desktop
-%{_iconsdir}/*/*/actions/palette*
+%attr(755,root,root) %{_bindir}/kolourpaint
+%attr(755,root,root) %{_libdir}/libkolourpaint_lgpl.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkolourpaint_lgpl.so.?
+%{_datadir}/apps/kolourpaint
+%{_desktopdir}/kde4/kolourpaint.desktop
+%{_iconsdir}/*/*/apps/kolourpaint.*
+%{_kdedocdir}/en/kolourpaint
 
 %files kruler
 %defattr(644,root,root,755)
@@ -400,6 +398,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde4/kruler.desktop
 %{_iconsdir}/*/*/apps/kruler.*
 %{_kdedocdir}/en/kruler
+
+%files ksane
+%defattr(644,root,root,755)
+%attr(755,root,root) %ghost %{_libdir}/libksane.so.?
+%attr(755,root,root) %{_libdir}/libksane.so.*.*.*
+%{_libdir}/kde4/ksaneplugin.so
+%{_datadir}/kde4/services/ksane_scan_service.desktop
 
 %files ksnapshot
 %defattr(644,root,root,755)
@@ -422,9 +427,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libokularcore.so.*.*.*
 %attr(755,root,root) %{_libdir}/kde4/okular*.so
 %attr(755,root,root) %ghost %{_libdir}/libokularcore.so.?
-#%attr(755,root,root) %{_libdir}/libspectreOkular.so.*.*.*
-#%attr(755,root,root) %ghost %{_libdir}/libspectreOkular.so.?
 %{_datadir}/apps/okular
+%{_datadir}/apps/cmake/modules/FindOkular.cmake
 %{_datadir}/config.kcfg/okular.kcfg
 %{_datadir}/config/okular.knsrc
 %{_datadir}/kde4/services/okular*.desktop
