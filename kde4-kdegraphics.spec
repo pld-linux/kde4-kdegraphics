@@ -202,6 +202,24 @@ A (very) simple painting program for KDE.
 %description kolourpaint -l pt_BR.UTF-8
 Editor básico de imagens bitmap.
 
+%package kruler
+Summary:	KRuler
+Summary(pl.UTF-8):	Linijka dla KDE
+Summary(pt_BR.UTF-8):	Régua de pixels para a tela
+Group:		X11/Applications/Graphics
+Requires:	kde4-kdebase-core >= %{version}
+
+%description kruler
+KRuler is a very simple application, with only one aim in life. To
+measure distances on your screen.
+
+%description kruler -l pl.UTF-8
+KRuler jest prostą aplikacją, z tylko jednym celem w życiu:
+mierzenie odległości na ekranie.
+
+%description kruler -l pt_BR.UTF-8
+Régua de pixels para a tela.
+
 %package ksane
 Summary:	Scanning tool
 Summary(pl.UTF-8):	Narzędzie do skanowania
@@ -221,24 +239,6 @@ bibliotek SANE.
 
 %description ksane -l pt_BR.UTF-8
 Um programa de rasterização de imagens, baseado no SANE e libkscan.
-
-%package kruler
-Summary:	KRuler
-Summary(pl.UTF-8):	Linijka dla KDE
-Summary(pt_BR.UTF-8):	Régua de pixels para a tela
-Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
-
-%description kruler
-KRuler is a very simple application, with only one aim in life. To
-measure distances on your screen.
-
-%description kruler -l pl.UTF-8
-KRuler jest prostą aplikacją, z tylko jednym celem w życiu:
-mierzenie odległości na ekranie.
-
-%description kruler -l pt_BR.UTF-8
-Régua de pixels para a tela.
 
 %package ksnapshot
 Summary:	KDE Snap Shot
@@ -315,9 +315,9 @@ export QTDIR=%{_prefix}
 install -d build
 cd build
 %cmake \
-		-DCMAKE_INSTALL_PREFIX=%{_prefix} \
-		-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
-		../
+	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
+	../
 
 %{__make}
 
@@ -331,26 +331,27 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	gwenview	-p /sbin/ldconfig
-%postun	gwenview	-p /sbin/ldconfig
-
 %post	kolourpaint	-p /sbin/ldconfig
 %postun	kolourpaint	-p /sbin/ldconfig
-
-%post	okular		-p /sbin/ldconfig
-%postun	okular		-p /sbin/ldconfig
 
 %post	ksane		-p /sbin/ldconfig
 %postun	ksane		-p /sbin/ldconfig
 
+%post	okular		-p /sbin/ldconfig
+%postun	okular		-p /sbin/ldconfig
+
+%post	gwenview	-p /sbin/ldconfig
+%postun	gwenview	-p /sbin/ldconfig
+
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/libkolourpaint_lgpl.so
-%{_libdir}/libokularcore.so
-%{_libdir}/libgwenviewlib.so
-%{_libdir}/libksane.so
+%attr(755,root,root) %{_libdir}/libkolourpaint_lgpl.so
+%attr(755,root,root) %{_libdir}/libokularcore.so
+%attr(755,root,root) %{_libdir}/libgwenviewlib.so
+%attr(755,root,root) %{_libdir}/libksane.so
 %{_includedir}/libksane
 %{_includedir}/okular
+%{_datadir}/apps/cmake/modules/FindOkular.cmake
 %{_pkgconfigdir}/libksane.pc
 
 %files kamera
@@ -402,8 +403,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ksane
 %defattr(644,root,root,755)
-%attr(755,root,root) %ghost %{_libdir}/libksane.so.?
 %attr(755,root,root) %{_libdir}/libksane.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libksane.so.?
 %{_libdir}/kde4/ksaneplugin.so
 %{_datadir}/kde4/services/ksane_scan_service.desktop
 
@@ -426,10 +427,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/okular
 %attr(755,root,root) %{_libdir}/libokularcore.so.*.*.*
-%attr(755,root,root) %{_libdir}/kde4/okular*.so
 %attr(755,root,root) %ghost %{_libdir}/libokularcore.so.?
+%attr(755,root,root) %{_libdir}/kde4/okular*.so
 %{_datadir}/apps/okular
-%{_datadir}/apps/cmake/modules/FindOkular.cmake
 %{_datadir}/config.kcfg/okular.kcfg
 %{_datadir}/config/okular.knsrc
 %{_datadir}/kde4/services/okular*.desktop
@@ -444,11 +444,14 @@ rm -rf $RPM_BUILD_ROOT
 %files gwenview
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gwenview
+%attr(755,root,root) %{_libdir}/libgwenviewlib.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgwenviewlib.so.?
 %attr(755,root,root) %{_libdir}/kde4/gvpart.so
 %attr(755,root,root) %{_libdir}/kde4/kio_msits.so
-%attr(755,root,root) %ghost %{_libdir}/libgwenviewlib.so.?
-%attr(755,root,root) %{_libdir}/libgwenviewlib.so.*.*.*
 %dir %{_datadir}/apps/gwenview
+%dir %{_datadir}/apps/gwenview/cursors
+%{_datadir}/apps/gwenview/cursors/zoom.png
+%{_datadir}/apps/gwenview/fullscreenthemes
 %{_datadir}/apps/gwenview/gwenviewui.rc
 %dir %{_datadir}/apps/gvpart
 %{_datadir}/apps/gvpart/gvpart.rc
@@ -456,8 +459,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/gvpart.desktop
 %{_desktopdir}/kde4/gwenview.desktop
 %{_iconsdir}/*/*/apps/gwenview.png
-%dir %{_datadir}/apps/gwenview/cursors
-%{_datadir}/apps/gwenview/cursors/zoom.png
-%{_datadir}/apps/gwenview/fullscreenthemes
 %{_iconsdir}/*/scalable/apps/gwenview.svgz
 %{_kdedocdir}/en/gwenview
