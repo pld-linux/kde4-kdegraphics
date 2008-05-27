@@ -9,12 +9,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.0.74
+Version:	4.0.80
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	7d364d0ce9864d7ad037e1f043a42cf9
+# Source0-md5:	02a036a5172afbbd2ce4cee42a27ec40
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -436,6 +436,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/libokular*.desktop
 %{_datadir}/kde4/servicetypes/okular*.desktop
 %{_desktopdir}/kde4/okular*.desktop
+# ??
+%{_datadir}/kde4/services/ServiceMenus/slideshow.desktop
+#
 %{_kdedocdir}/en/okular
 
 %files gwenview
