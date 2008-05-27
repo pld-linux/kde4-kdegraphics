@@ -52,30 +52,32 @@ Graphic applications for the K Desktop Environment.
 Included with this package are:
 
 - Kamera - digital camera support
-- KColorEdit - color palette editor
 - KColorChooser - color chooser
-- KDVI - displays TeX's device independent (.dvi) files,
-- KFax - displays fax files,
-- KFract - a fractal generator,
-- KGhostview - displays postscript (.ps) files,
-- KIconedit - icon editor,
-- Kooka - a scanning tool
-- KPaint - a simple drawing program,
+- KFile
+- KGamma
+- KolourPaint - a simple drawing program
+- KSANE - a scanning tool
 - KRuler - a screen ruler
-- KSnapshot - screen capture,
-- KuickShow - an image viewer
-- KView - displays numerous graphic file formats.
+- KSnapshot - screen capture
+- svgpart
+- oKular
+- gwenview - an image viewer
 
 %description -l es.UTF-8
 Aplicaciones gráficas para KDE.
 
 Incluidos en este paquete:
-- KDVI - visualiza archivos TeX's independientes de dispositivo,
-- KFax - visualiza archivos de fax,
-- KFract - creador de fractal
-- KGhostview - visualiza archivos postscript (.ps),
-- KPaint - un programa sencillo de dibujo,
-- KView - visualiza numerosos formatos de archivos gráficos.
+- Kamera
+- KColorChooser
+- KFile
+- KGamma
+- KolourPaint - un programa sencillo de dibujo
+- KSANE
+- KRuler
+- KSnapshot
+- svgpart
+- oKular
+- gwenview - visualiza numerosos formatos de archivos gráficos
 
 %description -l pl.UTF-8
 Aplikacje graficzne dla KDE.
@@ -83,37 +85,42 @@ Aplikacje graficzne dla KDE.
 Pakiet zawiera programy:
 
 - Kamera - obsługa kamer cyfrowych
-- KDVI - przeglądarka plików DVI,
-- KColorEdit - edytor palety kolorów
 - KColorChooser - wybór koloru
-- KFax - program do wyświetlania faksów,
-- KFract - generator fraktali,
-- KGhostview - program do oglądania postscriptu (.ps),
-- KIconedit - program do edycji ikon dla KDE,
-- KPaint - prosty program do grafiki rastrowej,
+- KFile
+- KGamma
+- KolourPaint - prosty program do grafiki rastrowej
 - KRuler - linijka ekranowa
-- KSnapshot - program do przechwytywania wyglądu ekranu,
-- KuickShow - przeglądarka plików graficznych.
-- KView - przeglądarka plików graficznych.
+- KSANE - narzędzie do skanowania
+- KSnapshot - program do przechwytywania wyglądu ekranu
+- svgpart
+- oKular
+- gwenview - przeglądarka plików graficznych
 
 %description -l pt_BR.UTF-8
 Aplicações gráficas para o KDE.
 
 Incluídos neste pacote:
-- KDVI - visualiza arquivos TeX's independentes de dispositivo,
-- KFax - visualiza arquivos de fax,
-- KFract - gerador de fractal,
-- KGhostview - visualiza arquivos postscript (.ps),
-- KPaint - um programa simples de desenho,
-- KView - visualiza numerosos formatos de arquivos gráficos.
+- Kamera
+- KColorChooser
+- KFile
+- KGamma
+- KolourPaint - um programa simples de desenho
+- KRuler
+- KSANE
+- KSnapshot
+- svgpart
+- oKular
+- gwenview - visualiza numerosos formatos de arquivos gráficos
 
 %package devel
 Summary:	kdegraphics development files
 Summary(pl.UTF-8):	Pliki dla programistów kdegraphics
 Summary(pt_BR.UTF-8):	Arquivos de inclusão para compilação de aplicações com kdegraphics
 Group:		X11/Development/Libraries
-Requires:	%{name}-kolourpaint = %{version}
-Requires:	%{name}-okular = %{version}
+Requires:	%{name}-gwenview = %{version}-%{release}
+Requires:	%{name}-kolourpaint = %{version}-%{release}
+Requires:	%{name}-ksane = %{version}-%{release}
+Requires:	%{name}-okular = %{version}-%{release}
 Requires:	kde4-kdelibs-devel
 
 %description devel
