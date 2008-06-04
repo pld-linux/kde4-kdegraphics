@@ -9,12 +9,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.0.80
+Version:	4.0.81
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	02a036a5172afbbd2ce4cee42a27ec40
+# Source0-md5:	87181e3b437b05048fb4ef5b3d64dee6
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -314,6 +314,39 @@ nawigacji w hierarchii plików. Wczytywanie obrazków jest wykonywane
 przez bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
 obsługiwane przez zainstalowaną wersję Qt.
 
+%package -n kde4-libkdcraw
+Summary:	KDcraw libary
+Summary(pl.UTF-8):	Biblioteka KDcraw
+Group:		X11/Libraries
+
+%description -n kde4-libkdcraw
+The KDcraw Library is part of the KIPI Project.
+
+%description -n kde4-libkdcraw -l pl.UTF-8
+Biblioteka KDcraw jest częścią projektu KIPI.
+
+%package -n kde4-libkexiv2
+Summary:	libkexiv2 libary
+Summary(pl.UTF-8):	Biblioteka libkexiv2
+Group:		X11/Libraries
+
+%description -n kde4-libkexiv2
+libkexiv2.
+
+%description -n kde4-libkexiv2 -l pl.UTF-8
+libkexiv2.
+
+%package -n kde4-kipiplugins
+Summary:	kipiplugins libary
+Summary(pl.UTF-8):	Biblioteka kipiplugins
+Group:		X11/Libraries
+
+%description -n kde4-kipiplugins
+kipiplugins.
+
+%description -n kde4-kipiplugins -l pl.UTF-8
+kipiplugins.
+
 %prep
 %setup -q -n %{orgname}-%{version}
 
@@ -360,6 +393,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/okular
 %{_datadir}/apps/cmake/modules/FindOkular.cmake
 %{_pkgconfigdir}/libksane.pc
+%{_includedir}/libkdcraw
+%{_includedir}/libkexiv2
+%{_includedir}/libkipi
 
 %files kamera
 %defattr(644,root,root,755)
@@ -468,3 +504,34 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/apps/gwenview.png
 %{_iconsdir}/*/scalable/apps/gwenview.svgz
 %{_kdedocdir}/en/gwenview
+
+%files -n kde4-libkdcraw
+%defattr(644,root,root,755)
+%{_libdir}/libkdcraw.so
+%attr(755,root,root) %{_libdir}/libkdcraw.so.5
+%attr(755,root,root) %{_libdir}/libkdcraw.so.5.0.0
+%{_libdir}/libkdcraw5/CAMERALIST
+%{_libdir}/libkdcraw5/kdcraw
+%{_pkgconfigdir}/libkdcraw.pc
+%{_datadir}/apps/libkdcraw
+%{_iconsdir}/hicolor/*x*/apps/kdcraw.png
+
+%files -n kde4-libkexiv2
+%defattr(644,root,root,755)
+%{_libdir}/libkexiv2.so
+%attr(755,root,root) %{_libdir}/libkexiv2.so.6
+%attr(755,root,root) %{_libdir}/libkexiv2.so.6.0.0
+%{_pkgconfigdir}/libkexiv2.pc
+
+%files -n kde4-kipiplugins
+%defattr(644,root,root,755)
+%{_libdir}/libkipi.so
+%attr(755,root,root) %{_libdir}/libkipi.so.5
+%attr(755,root,root) %{_libdir}/libkipi.so.5.0.0
+%{_pkgconfigdir}/libkipi.pc
+%{_datadir}/apps/kipi
+%{_iconsdir}/hicolor/*x*/apps/kipi.png
+%{_iconsdir}/hicolor/16x16/actions/black-white.png
+%{_iconsdir}/hicolor/16x16/actions/color.png
+%{_iconsdir}/hicolor/16x16/actions/gray-scale.png
+%{_datadir}/kde4/servicetypes/kipiplugin.desktop
