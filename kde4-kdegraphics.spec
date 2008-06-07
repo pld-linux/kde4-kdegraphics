@@ -27,6 +27,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	ghostscript-devel
 BuildRequires:	giflib-devel
 BuildRequires:	imlib-devel
+BuildRequires:	ebook-tools
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kpathsea
 BuildRequires:	lcms-devel
@@ -41,6 +42,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	libxml2-progs
 BuildRequires:	poppler-Qt-devel
 BuildRequires:	poppler-qt-devel
+BuildRequires:	qca-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sane-backends-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
