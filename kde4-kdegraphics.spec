@@ -27,8 +27,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	ghostscript-devel
 BuildRequires:	giflib-devel
 BuildRequires:	imlib-devel
-# THERE IS NO SUCH PACKAGE
-#BuildRequires:	ebook-tools
+BuildRequires:	ebook-tools
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kpathsea
 BuildRequires:	lcms-devel
