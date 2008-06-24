@@ -397,6 +397,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/libksane
 %{_includedir}/okular
 %{_datadir}/apps/cmake/modules/FindOkular.cmake
+%{_datadir}/apps/cmake/modules/FindKSane.cmake
 %{_pkgconfigdir}/libksane.pc
 %{_includedir}/libkdcraw
 %{_includedir}/libkexiv2
@@ -487,6 +488,8 @@ rm -rf $RPM_BUILD_ROOT
 # ??
 %{_datadir}/kde4/services/ServiceMenus/slideshow.desktop
 #
+%{_iconsdir}/hicolor/*/apps/okular.png
+%{_iconsdir}/hicolor/scalable/apps/okular.svgz
 %{_kdedocdir}/en/okular
 
 %files gwenview
