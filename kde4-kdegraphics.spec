@@ -300,6 +300,7 @@ Summary:	Simple image viewer for KDE
 Summary(pl.UTF-8):	Prosta przeglądarka obrazków dla KDE
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdelibs >= %{version}
+Obsoletes:	gwenview
 
 %description gwenview
 Gwenview is an image viewer for KDE.
