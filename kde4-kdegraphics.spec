@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
 Version:	4.1.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -343,6 +343,7 @@ libkexiv2.
 Summary:	kipiplugins libary
 Summary(pl.UTF-8):	Biblioteka kipiplugins
 Group:		X11/Libraries
+Conflicts:	libkipi
 
 %description -n kde4-kipiplugins
 kipiplugins.
