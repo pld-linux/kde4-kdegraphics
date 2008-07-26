@@ -521,8 +521,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdcraw.so.5
 %attr(755,root,root) %{_libdir}/libkdcraw.so.5.0.0
 %dir %{_libdir}/libkdcraw5
+%attr(755,root,root) %{_libdir}/libkdcraw5/kdcraw
 %{_libdir}/libkdcraw5/CAMERALIST
-%{_libdir}/libkdcraw5/kdcraw
 %{_pkgconfigdir}/libkdcraw.pc
 %{_datadir}/apps/libkdcraw
 %{_iconsdir}/hicolor/*x*/apps/kdcraw.png
