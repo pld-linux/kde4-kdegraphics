@@ -19,6 +19,7 @@ URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	chmlib-devel
+BuildRequires:	cmake
 BuildRequires:	djvulibre-devel
 BuildRequires:	ed
 BuildRequires:	exiv2-devel
@@ -355,7 +356,6 @@ kipiplugins.
 %setup -q -n %{orgname}-%{version}
 
 %build
-export QTDIR=%{_prefix}
 install -d build
 cd build
 %cmake \
