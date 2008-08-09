@@ -1,7 +1,8 @@
 #
 # Conditional build:
 #
-%define		_state		stable
+%define		_state		unstable
+%define		qtver		4.4.1
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
@@ -9,8 +10,8 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.1.0
-Release:	4
+Version:	4.1.61
+Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -18,7 +19,9 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	QtCore-devel >= %{qtver}
 BuildRequires:	chmlib-devel
+BuildRequires:	cmake >= 2.6.0
 BuildRequires:	djvulibre-devel
 BuildRequires:	ed
 BuildRequires:	exiv2-devel
@@ -355,12 +358,12 @@ kipiplugins.
 %setup -q -n %{orgname}-%{version}
 
 %build
-export QTDIR=%{_prefix}
 install -d build
 cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
+	-DCMAKE_AR=/usr/bin/ar \
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
 %endif
@@ -508,6 +511,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/gwenview/gwenviewui.rc
 %dir %{_datadir}/apps/gvpart
 %{_datadir}/apps/gvpart/gvpart.rc
+%{_datadir}/apps/gvpart/gvpart-gwenview.rc
 %{_datadir}/kde4/services/msits.protocol
 %{_datadir}/kde4/services/gvpart.desktop
 %{_desktopdir}/kde4/gwenview.desktop
@@ -518,11 +522,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -n kde4-libkdcraw
 %defattr(644,root,root,755)
 %{_libdir}/libkdcraw.so
-%attr(755,root,root) %{_libdir}/libkdcraw.so.5
-%attr(755,root,root) %{_libdir}/libkdcraw.so.5.0.0
-%dir %{_libdir}/libkdcraw5
-%attr(755,root,root) %{_libdir}/libkdcraw5/kdcraw
-%{_libdir}/libkdcraw5/CAMERALIST
+%attr(755,root,root) %{_libdir}/libkdcraw.so.?
+%attr(755,root,root) %{_libdir}/libkdcraw.so.*.*.*
+%dir %{_libdir}/libkdcraw6
+%attr(755,root,root) %{_libdir}/libkdcraw6/kdcraw
+%{_libdir}/libkdcraw6/CAMERALIST
 %{_pkgconfigdir}/libkdcraw.pc
 %{_datadir}/apps/libkdcraw
 %{_iconsdir}/hicolor/*x*/apps/kdcraw.png
@@ -530,8 +534,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -n kde4-libkexiv2
 %defattr(644,root,root,755)
 %{_libdir}/libkexiv2.so
-%attr(755,root,root) %{_libdir}/libkexiv2.so.6
-%attr(755,root,root) %{_libdir}/libkexiv2.so.6.0.0
+%attr(755,root,root) %{_libdir}/libkexiv2.so.?
+%attr(755,root,root) %{_libdir}/libkexiv2.so.*.*.*
 %{_pkgconfigdir}/libkexiv2.pc
 
 %files -n kde4-kipiplugins
