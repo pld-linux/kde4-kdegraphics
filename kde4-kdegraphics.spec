@@ -15,7 +15,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	2488d850b66eba1b542bded3def3e87e
+# Source0-md5:	5ce9acd57a3f7c5147d0d88933a1759f
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
