@@ -21,7 +21,7 @@ BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	QtCore-devel >= %{qtver}
 BuildRequires:	chmlib-devel
-BuildRequires:	cmake >= 2.6.0
+BuildRequires:	cmake >= 2.6.1-2
 BuildRequires:	djvulibre-devel
 BuildRequires:	ed
 BuildRequires:	exiv2-devel
@@ -363,7 +363,6 @@ cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
-	-DCMAKE_AR=/usr/bin/ar \
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
 %endif
