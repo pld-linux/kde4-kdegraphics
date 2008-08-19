@@ -510,7 +510,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/gwenview/gwenviewui.rc
 %dir %{_datadir}/apps/gvpart
 %{_datadir}/apps/gvpart/gvpart.rc
-%{_datadir}/apps/gvpart/gvpart-gwenview.rc
 %{_datadir}/kde4/services/msits.protocol
 %{_datadir}/kde4/services/gvpart.desktop
 %{_desktopdir}/kde4/gwenview.desktop
