@@ -44,6 +44,7 @@ BuildRequires:	libxml2-progs
 BuildRequires:	poppler-Qt-devel
 BuildRequires:	poppler-qt-devel
 BuildRequires:	qca-devel
+BuildRequires:	qimageblitz-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sane-backends-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
