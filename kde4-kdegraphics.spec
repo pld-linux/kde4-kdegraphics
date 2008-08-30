@@ -10,12 +10,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.1.63
+Version:	4.1.64
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	b739ff41baf066cd1dc37ae18204f578
+# Source0-md5:	0b2d14abc6354491dfdfc5edce957d65
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -435,6 +435,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kgamma
 %{_datadir}/kde4/services/kgamma.desktop
 %{_iconsdir}/*/*/apps/kgamma.png
+%{_kdedocdir}/en/kgamma/
 
 %files kolourpaint
 %defattr(644,root,root,755)
