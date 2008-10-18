@@ -10,12 +10,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.1.69
+Version:	4.1.70
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	18918510dec7d33fa363e5af3be5f895
+# Source0-md5:	98d184c86ef196344759962da52e232d
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -23,6 +23,7 @@ BuildRequires:	QtCore-devel >= %{qtver}
 BuildRequires:	chmlib-devel
 BuildRequires:	cmake >= 2.6.1-2
 BuildRequires:	djvulibre-devel
+BuildRequires:	ebook-tools-devel
 BuildRequires:	ed
 BuildRequires:	exiv2-devel
 BuildRequires:	fribidi-devel >= 0.10.4
@@ -30,7 +31,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	ghostscript-devel
 BuildRequires:	giflib-devel
 BuildRequires:	imlib-devel
-BuildRequires:	ebook-tools-devel
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kpathsea
 BuildRequires:	lcms-devel
@@ -153,12 +153,12 @@ configure your camera model and port type from a list in KControl,
 then start accessing the camera contents with a kamera:/ URL.
 
 %description kamera -l pl.UTF-8
-kamera to moduł IO slave oraz panelu KControl umożliwiający dostęp
-do folderów i zdjęć w dowolnym aparacie cyfrowym obsługiwanym
-przez biblioteki gPhoto2. Jeśli mamy obsługiwany aparat, można
-zacząć używać go w większości aplikacji KDE w dwóch krokach:
-wybrać model i port aparatu z listy w KControl, a następnie
-odwoływać się do zawartości aparatu przez URL kamera:/.
+kamera to moduł IO slave oraz panelu KControl umożliwiający dostęp do
+folderów i zdjęć w dowolnym aparacie cyfrowym obsługiwanym przez
+biblioteki gPhoto2. Jeśli mamy obsługiwany aparat, można zacząć używać
+go w większości aplikacji KDE w dwóch krokach: wybrać model i port
+aparatu z listy w KControl, a następnie odwoływać się do zawartości
+aparatu przez URL kamera:/.
 
 %package kcolorchooser
 Summary:	Color chooser
@@ -183,8 +183,8 @@ This package adds a fold to konqueror "file properties" dialog window
 with file enhanced informations.
 
 %description kfile -l pl.UTF-8
-Ten pakiet dodaje do okna dialogowego "właściwości pliku"
-konquerora dodatkową zakładkę z rozszerzonymi informacjami o pliku.
+Ten pakiet dodaje do okna dialogowego "właściwości pliku" konquerora
+dodatkową zakładkę z rozszerzonymi informacjami o pliku.
 
 %package kgamma
 Summary:	A monitor calibration tool
@@ -226,8 +226,8 @@ KRuler is a very simple application, with only one aim in life. To
 measure distances on your screen.
 
 %description kruler -l pl.UTF-8
-KRuler jest prostą aplikacją, z tylko jednym celem w życiu:
-mierzenie odległości na ekranie.
+KRuler jest prostą aplikacją, z tylko jednym celem w życiu: mierzenie
+odległości na ekranie.
 
 %description kruler -l pt_BR.UTF-8
 Régua de pixels para a tela.
@@ -266,8 +266,8 @@ single window. The images can then be saved in a variety of formats.
 
 %description ksnapshot -l pl.UTF-8
 KSnapshot to prosta aplikacja do robienia zrzutów ekranu. Potrafi
-przechwytywać obraz całego pulpitu lub tylko pojedynczego okna.
-Obrazy mogą być następnie zapisane w wielu formatach.
+przechwytywać obraz całego pulpitu lub tylko pojedynczego okna. Obrazy
+mogą być następnie zapisane w wielu formatach.
 
 %description ksnapshot -l pt_BR.UTF-8
 Programa de captura de tela.
@@ -314,10 +314,10 @@ Qt library, so it supports all image formats your Qt installation
 supports.
 
 %description gwenview -l pl.UTF-8
-Gwenview to przeglądarka obrazków dla KDE. Ma okno z drzewem
-katalogów oraz okno z listą plików w celu zapewnienia łatwej
-nawigacji w hierarchii plików. Wczytywanie obrazków jest wykonywane
-przez bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
+Gwenview to przeglądarka obrazków dla KDE. Ma okno z drzewem katalogów
+oraz okno z listą plików w celu zapewnienia łatwej nawigacji w
+hierarchii plików. Wczytywanie obrazków jest wykonywane przez
+bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
 obsługiwane przez zainstalowaną wersję Qt.
 
 %package -n kde4-libkdcraw
@@ -413,7 +413,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde4/kio_kamera.so
 %{_datadir}/kde4/services/kamera.desktop
 %{_datadir}/kde4/services/camera.protocol
-%{_kdedocdir}/en/kamera
+%{_kdedocdir}/en/kcontrol/kamera
 
 %files kcolorchooser
 %defattr(644,root,root,755)
