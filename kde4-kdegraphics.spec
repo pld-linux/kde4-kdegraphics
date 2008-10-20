@@ -142,7 +142,7 @@ bibliotecas do kdegraphics.
 Summary:	Digital camera support
 Summary(pl.UTF-8):	Obsługa kamer cyfrowych
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 
 %description kamera
 kamera is an IO slave and a KControl panel module which allows you to
@@ -190,7 +190,7 @@ dodatkową zakładkę z rozszerzonymi informacjami o pliku.
 Summary:	A monitor calibration tool
 Summary(pl.UTF-8):	Narzędzie do kalibracji monitora
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 
 %description kgamma
 A monitor calibration tool.
@@ -203,7 +203,7 @@ Summary:	KDE Painter
 Summary(pl.UTF-8):	Program graficzny KDE
 Summary(pt_BR.UTF-8):	Editor básico de imagens bitmap
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 
 %description kolourpaint
 A (very) simple painting program for KDE.
@@ -219,7 +219,7 @@ Summary:	KRuler
 Summary(pl.UTF-8):	Linijka dla KDE
 Summary(pt_BR.UTF-8):	Régua de pixels para a tela
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 
 %description kruler
 KRuler is a very simple application, with only one aim in life. To
@@ -237,7 +237,7 @@ Summary:	Scanning tool
 Summary(pl.UTF-8):	Narzędzie do skanowania
 Summary(pt_BR.UTF-8):	Um programa de rasterização de imagens, baseado no SANE e libkscan
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 Obsoletes:	kde4-kdegraphics-kscanservice
 Conflicts:	kde4-kdegraphics-kscanservice
 
@@ -257,7 +257,7 @@ Summary:	KDE Snap Shot
 Summary(pl.UTF-8):	Program do przechwytywania ekranu dla KDE
 Summary(pt_BR.UTF-8):	Programa de captura de tela
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 
 %description ksnapshot
 KSnapshot is a simple application for taking screenshots. It is
