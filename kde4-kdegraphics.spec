@@ -21,7 +21,7 @@ BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	QtCore-devel >= %{qtver}
 BuildRequires:	chmlib-devel
-BuildRequires:	cmake >= 2.6.1-2
+BuildRequires:	cmake >= 2.6.2
 BuildRequires:	djvulibre-devel
 BuildRequires:	ebook-tools-devel
 BuildRequires:	ed
