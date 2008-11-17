@@ -397,14 +397,14 @@ rm -rf $RPM_BUILD_ROOT
 %post	gwenview	-p /sbin/ldconfig
 %postun	gwenview	-p /sbin/ldconfig
 
-%post	-n libkexiv2	-p /sbin/ldconfig
-%postun	-n libkexiv2	-p /sbin/ldconfig
+%post	-n kde4-libkexiv2	-p /sbin/ldconfig
+%postun	-n kde4-libkexiv2	-p /sbin/ldconfig
 
-%post	-n libkdcraw	-p /sbin/ldconfig
-%postun	-n libdcraw	-p /sbin/ldconfig
+%post	-n kde4-libkdcraw	-p /sbin/ldconfig
+%postun	-n kde4-libkdcraw	-p /sbin/ldconfig
 
-%post	-n libkipi	-p /sbin/ldconfig
-%postun	-n libkipi	-p /sbin/ldconfig
+%post	-n kde4-libkipi	-p /sbin/ldconfig
+%postun	-n kde4-libkipi	-p /sbin/ldconfig
 
 %files devel
 %defattr(644,root,root,755)
