@@ -125,6 +125,9 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-gwenview = %{version}-%{release}
 Requires:	%{name}-kolourpaint = %{version}-%{release}
 Requires:	%{name}-ksane = %{version}-%{release}
+Requires:	%{name}-libdcraw = %{version}-%{release}
+Requires:	%{name}-libkexiv2 = %{version}-%{release}
+Requires:	%{name}-libkipi = %{version}-%{release}
 Requires:	%{name}-okular = %{version}-%{release}
 Requires:	kde4-kdelibs-devel
 
@@ -342,17 +345,18 @@ libkexiv2.
 %description -n kde4-libkexiv2 -l pl.UTF-8
 libkexiv2.
 
-%package -n kde4-kipiplugins
-Summary:	kipiplugins libary
-Summary(pl.UTF-8):	Biblioteka kipiplugins
+%package -n kde4-libkipi
+Summary:	kipi libary
+Summary(pl.UTF-8):	Biblioteka kipi
 Group:		X11/Libraries
 Conflicts:	libkipi
+Obsoletes:	kde4-kipiplugins
 
-%description -n kde4-kipiplugins
-kipiplugins.
+%description -n kde4-libkipi
+libkipi.
 
-%description -n kde4-kipiplugins -l pl.UTF-8
-kipiplugins.
+%description -n kde4-libkipi -l pl.UTF-8
+libkipi.
 
 %prep
 %setup -q -n %{orgname}-%{version}
@@ -393,12 +397,24 @@ rm -rf $RPM_BUILD_ROOT
 %post	gwenview	-p /sbin/ldconfig
 %postun	gwenview	-p /sbin/ldconfig
 
+%post	-n libkexiv2	-p /sbin/ldconfig
+%postun	-n libkexiv2	-p /sbin/ldconfig
+
+%post	-n libkdcraw	-p /sbin/ldconfig
+%postun	-n libdcraw	-p /sbin/ldconfig
+
+%post	-n libkipi	-p /sbin/ldconfig
+%postun	-n libkipi	-p /sbin/ldconfig
+
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libkolourpaint_lgpl.so
 %attr(755,root,root) %{_libdir}/libokularcore.so
 %attr(755,root,root) %{_libdir}/libgwenviewlib.so
 %attr(755,root,root) %{_libdir}/libksane.so
+%attr(755,root,root) %{_libdir}/libkexiv2.so
+%attr(755,root,root) %{_libdir}/libkdcraw.so
+%attr(755,root,root) %{_libdir}/libkipi.so
 %{_includedir}/libksane
 %{_includedir}/okular
 %{_datadir}/apps/cmake/modules/FindOkular.cmake
@@ -521,8 +537,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n kde4-libkdcraw
 %defattr(644,root,root,755)
-%{_libdir}/libkdcraw.so
-%attr(755,root,root) %{_libdir}/libkdcraw.so.?
+%attr(755,root,root) %ghost %{_libdir}/libkdcraw.so.?
 %attr(755,root,root) %{_libdir}/libkdcraw.so.*.*.*
 #%dir %{_libdir}/libkdcraw6
 #%attr(755,root,root) %{_libdir}/libkdcraw6/kdcraw
@@ -533,16 +548,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n kde4-libkexiv2
 %defattr(644,root,root,755)
-%{_libdir}/libkexiv2.so
-%attr(755,root,root) %{_libdir}/libkexiv2.so.?
+%attr(755,root,root) %ghost %{_libdir}/libkexiv2.so.?
 %attr(755,root,root) %{_libdir}/libkexiv2.so.*.*.*
 %{_pkgconfigdir}/libkexiv2.pc
 
-%files -n kde4-kipiplugins
+%files -n kde4-libkipi
 %defattr(644,root,root,755)
-%{_libdir}/libkipi.so
-%attr(755,root,root) %{_libdir}/libkipi.so.5
-%attr(755,root,root) %{_libdir}/libkipi.so.5.0.0
+%attr(755,root,root) %ghost %{_libdir}/libkipi.so.?
+%attr(755,root,root) %{_libdir}/libkipi.so.*.*.*
 %{_pkgconfigdir}/libkipi.pc
 %{_datadir}/apps/kipi
 %{_iconsdir}/hicolor/*x*/apps/kipi.png
