@@ -126,7 +126,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-gwenview = %{version}-%{release}
 Requires:	%{name}-kolourpaint = %{version}-%{release}
 Requires:	%{name}-ksane = %{version}-%{release}
-Requires:	kde4-libdcraw = %{version}-%{release}
+Requires:	kde4-libkdcraw = %{version}-%{release}
 Requires:	kde4-libkexiv2 = %{version}-%{release}
 Requires:	kde4-libkipi = %{version}-%{release}
 Requires:	%{name}-okular = %{version}-%{release}
