@@ -478,7 +478,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libksane.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libksane.so.?
-%{_libdir}/kde4/ksaneplugin.so
+%attr(755,root,root) %{_libdir}/kde4/ksaneplugin.so
 %{_datadir}/kde4/services/ksane_scan_service.desktop
 
 %files ksnapshot
