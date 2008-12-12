@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
 Version:	4.1.82
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -328,6 +328,7 @@ obsługiwane przez zainstalowaną wersję Qt.
 Summary:	KDcraw libary
 Summary(pl.UTF-8):	Biblioteka KDcraw
 Group:		X11/Libraries
+Obsoletes:	libkdcraw
 
 %description -n kde4-libkdcraw
 The KDcraw Library is part of the KIPI Project.
