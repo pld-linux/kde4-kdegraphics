@@ -1,0 +1,2 @@
+- add patch0 to not to show a message indicating that libkipi is not present in our system
+  (of course it's not, kde4-kdegraphics provides it)
