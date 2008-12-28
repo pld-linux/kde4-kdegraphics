@@ -1,7 +1,8 @@
 #
 # Conditional build:
 #
-%define		_state		stable
+%define		_state		unstable
+%define		qtver		4.4.3
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
@@ -9,18 +10,21 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.1.1
-Release:	0.1
+Version:	4.1.85
+Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	e5475d37dc0a12b6ce7e6dbebceb9340
+# Source0-md5:	8a73aa0b31d58b9eacb69b465c779a52
+Patch0:		%{name}-CMakeLists.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	QtCore-devel >= %{qtver}
 BuildRequires:	chmlib-devel
-BuildRequires:	cmake
+BuildRequires:	cmake >= 2.6.2
 BuildRequires:	djvulibre-devel
+BuildRequires:	ebook-tools-devel
 BuildRequires:	ed
 BuildRequires:	exiv2-devel
 BuildRequires:	fribidi-devel >= 0.10.4
@@ -28,7 +32,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	ghostscript-devel
 BuildRequires:	giflib-devel
 BuildRequires:	imlib-devel
-BuildRequires:	ebook-tools-devel
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kpathsea
 BuildRequires:	lcms-devel
@@ -43,8 +46,7 @@ BuildRequires:	libxml2-devel
 BuildRequires:	libxml2-progs
 BuildRequires:	poppler-Qt-devel
 BuildRequires:	poppler-qt-devel
-BuildRequires:	qca-devel
-BuildRequires:	qimageblitz-devel
+BuildRequires:	qca-devel >= 2.0.0
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sane-backends-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
@@ -124,6 +126,9 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-gwenview = %{version}-%{release}
 Requires:	%{name}-kolourpaint = %{version}-%{release}
 Requires:	%{name}-ksane = %{version}-%{release}
+Requires:	kde4-libkdcraw = %{version}-%{release}
+Requires:	kde4-libkexiv2 = %{version}-%{release}
+Requires:	kde4-libkipi = %{version}-%{release}
 Requires:	%{name}-okular = %{version}-%{release}
 Requires:	kde4-kdelibs-devel
 
@@ -141,7 +146,7 @@ bibliotecas do kdegraphics.
 Summary:	Digital camera support
 Summary(pl.UTF-8):	Obsługa kamer cyfrowych
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 
 %description kamera
 kamera is an IO slave and a KControl panel module which allows you to
@@ -152,12 +157,12 @@ configure your camera model and port type from a list in KControl,
 then start accessing the camera contents with a kamera:/ URL.
 
 %description kamera -l pl.UTF-8
-kamera to moduł IO slave oraz panelu KControl umożliwiający dostęp
-do folderów i zdjęć w dowolnym aparacie cyfrowym obsługiwanym
-przez biblioteki gPhoto2. Jeśli mamy obsługiwany aparat, można
-zacząć używać go w większości aplikacji KDE w dwóch krokach:
-wybrać model i port aparatu z listy w KControl, a następnie
-odwoływać się do zawartości aparatu przez URL kamera:/.
+kamera to moduł IO slave oraz panelu KControl umożliwiający dostęp do
+folderów i zdjęć w dowolnym aparacie cyfrowym obsługiwanym przez
+biblioteki gPhoto2. Jeśli mamy obsługiwany aparat, można zacząć używać
+go w większości aplikacji KDE w dwóch krokach: wybrać model i port
+aparatu z listy w KControl, a następnie odwoływać się do zawartości
+aparatu przez URL kamera:/.
 
 %package kcolorchooser
 Summary:	Color chooser
@@ -182,14 +187,14 @@ This package adds a fold to konqueror "file properties" dialog window
 with file enhanced informations.
 
 %description kfile -l pl.UTF-8
-Ten pakiet dodaje do okna dialogowego "właściwości pliku"
-konquerora dodatkową zakładkę z rozszerzonymi informacjami o pliku.
+Ten pakiet dodaje do okna dialogowego "właściwości pliku" konquerora
+dodatkową zakładkę z rozszerzonymi informacjami o pliku.
 
 %package kgamma
 Summary:	A monitor calibration tool
 Summary(pl.UTF-8):	Narzędzie do kalibracji monitora
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 
 %description kgamma
 A monitor calibration tool.
@@ -202,7 +207,7 @@ Summary:	KDE Painter
 Summary(pl.UTF-8):	Program graficzny KDE
 Summary(pt_BR.UTF-8):	Editor básico de imagens bitmap
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 
 %description kolourpaint
 A (very) simple painting program for KDE.
@@ -218,15 +223,15 @@ Summary:	KRuler
 Summary(pl.UTF-8):	Linijka dla KDE
 Summary(pt_BR.UTF-8):	Régua de pixels para a tela
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 
 %description kruler
 KRuler is a very simple application, with only one aim in life. To
 measure distances on your screen.
 
 %description kruler -l pl.UTF-8
-KRuler jest prostą aplikacją, z tylko jednym celem w życiu:
-mierzenie odległości na ekranie.
+KRuler jest prostą aplikacją, z tylko jednym celem w życiu: mierzenie
+odległości na ekranie.
 
 %description kruler -l pt_BR.UTF-8
 Régua de pixels para a tela.
@@ -236,7 +241,7 @@ Summary:	Scanning tool
 Summary(pl.UTF-8):	Narzędzie do skanowania
 Summary(pt_BR.UTF-8):	Um programa de rasterização de imagens, baseado no SANE e libkscan
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 Obsoletes:	kde4-kdegraphics-kscanservice
 Conflicts:	kde4-kdegraphics-kscanservice
 
@@ -256,7 +261,7 @@ Summary:	KDE Snap Shot
 Summary(pl.UTF-8):	Program do przechwytywania ekranu dla KDE
 Summary(pt_BR.UTF-8):	Programa de captura de tela
 Group:		X11/Applications/Graphics
-Requires:	kde4-kdebase-core >= %{version}
+Requires:	kde4-kdebase >= %{version}
 
 %description ksnapshot
 KSnapshot is a simple application for taking screenshots. It is
@@ -265,8 +270,8 @@ single window. The images can then be saved in a variety of formats.
 
 %description ksnapshot -l pl.UTF-8
 KSnapshot to prosta aplikacja do robienia zrzutów ekranu. Potrafi
-przechwytywać obraz całego pulpitu lub tylko pojedynczego okna.
-Obrazy mogą być następnie zapisane w wielu formatach.
+przechwytywać obraz całego pulpitu lub tylko pojedynczego okna. Obrazy
+mogą być następnie zapisane w wielu formatach.
 
 %description ksnapshot -l pt_BR.UTF-8
 Programa de captura de tela.
@@ -313,16 +318,17 @@ Qt library, so it supports all image formats your Qt installation
 supports.
 
 %description gwenview -l pl.UTF-8
-Gwenview to przeglądarka obrazków dla KDE. Ma okno z drzewem
-katalogów oraz okno z listą plików w celu zapewnienia łatwej
-nawigacji w hierarchii plików. Wczytywanie obrazków jest wykonywane
-przez bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
+Gwenview to przeglądarka obrazków dla KDE. Ma okno z drzewem katalogów
+oraz okno z listą plików w celu zapewnienia łatwej nawigacji w
+hierarchii plików. Wczytywanie obrazków jest wykonywane przez
+bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
 obsługiwane przez zainstalowaną wersję Qt.
 
 %package -n kde4-libkdcraw
 Summary:	KDcraw libary
 Summary(pl.UTF-8):	Biblioteka KDcraw
 Group:		X11/Libraries
+Obsoletes:	libkdcraw
 
 %description -n kde4-libkdcraw
 The KDcraw Library is part of the KIPI Project.
@@ -341,26 +347,28 @@ libkexiv2.
 %description -n kde4-libkexiv2 -l pl.UTF-8
 libkexiv2.
 
-%package -n kde4-kipiplugins
-Summary:	kipiplugins libary
-Summary(pl.UTF-8):	Biblioteka kipiplugins
+%package -n kde4-libkipi
+Summary:	kipi libary
+Summary(pl.UTF-8):	Biblioteka kipi
 Group:		X11/Libraries
-Conflicts:	libkipi
+Obsoletes:	kde4-kipiplugins
 
-%description -n kde4-kipiplugins
-kipiplugins.
+%description -n kde4-libkipi
+libkipi.
 
-%description -n kde4-kipiplugins -l pl.UTF-8
-kipiplugins.
+%description -n kde4-libkipi -l pl.UTF-8
+libkipi.
 
 %prep
 %setup -q -n %{orgname}-%{version}
+%patch0 -p0
 
 %build
 install -d build
 cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	-DGWENVIEW_SEMANTICINFO_BACKEND=Nepomuk \
 	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
@@ -391,16 +399,31 @@ rm -rf $RPM_BUILD_ROOT
 %post	gwenview	-p /sbin/ldconfig
 %postun	gwenview	-p /sbin/ldconfig
 
+%post	-n kde4-libkexiv2	-p /sbin/ldconfig
+%postun	-n kde4-libkexiv2	-p /sbin/ldconfig
+
+%post	-n kde4-libkdcraw	-p /sbin/ldconfig
+%postun	-n kde4-libkdcraw	-p /sbin/ldconfig
+
+%post	-n kde4-libkipi	-p /sbin/ldconfig
+%postun	-n kde4-libkipi	-p /sbin/ldconfig
+
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libkolourpaint_lgpl.so
 %attr(755,root,root) %{_libdir}/libokularcore.so
 %attr(755,root,root) %{_libdir}/libgwenviewlib.so
 %attr(755,root,root) %{_libdir}/libksane.so
+%attr(755,root,root) %{_libdir}/libkexiv2.so
+%attr(755,root,root) %{_libdir}/libkdcraw.so
+%attr(755,root,root) %{_libdir}/libkipi.so
 %{_includedir}/libksane
 %{_includedir}/okular
 %{_datadir}/apps/cmake/modules/FindOkular.cmake
 %{_datadir}/apps/cmake/modules/FindKSane.cmake
+%{_pkgconfigdir}/libkdcraw.pc
+%{_pkgconfigdir}/libkexiv2.pc
+%{_pkgconfigdir}/libkipi.pc
 %{_pkgconfigdir}/libksane.pc
 %{_includedir}/libkdcraw
 %{_includedir}/libkexiv2
@@ -412,7 +435,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde4/kio_kamera.so
 %{_datadir}/kde4/services/kamera.desktop
 %{_datadir}/kde4/services/camera.protocol
-%{_kdedocdir}/en/kamera
+%{_kdedocdir}/en/kcontrol/kamera
 
 %files kcolorchooser
 %defattr(644,root,root,755)
@@ -434,6 +457,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kgamma
 %{_datadir}/kde4/services/kgamma.desktop
 %{_iconsdir}/*/*/apps/kgamma.png
+%{_kdedocdir}/en/kgamma/
 
 %files kolourpaint
 %defattr(644,root,root,755)
@@ -457,7 +481,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libksane.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libksane.so.?
-%{_libdir}/kde4/ksaneplugin.so
+%attr(755,root,root) %{_libdir}/kde4/ksaneplugin.so
 %{_datadir}/kde4/services/ksane_scan_service.desktop
 
 %files ksnapshot
@@ -518,29 +542,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n kde4-libkdcraw
 %defattr(644,root,root,755)
-%{_libdir}/libkdcraw.so
-%attr(755,root,root) %{_libdir}/libkdcraw.so.5
-%attr(755,root,root) %{_libdir}/libkdcraw.so.5.0.0
-%dir %{_libdir}/libkdcraw5
-%attr(755,root,root) %{_libdir}/libkdcraw5/kdcraw
-%{_libdir}/libkdcraw5/CAMERALIST
-%{_pkgconfigdir}/libkdcraw.pc
+%attr(755,root,root) %ghost %{_libdir}/libkdcraw.so.?
+%attr(755,root,root) %{_libdir}/libkdcraw.so.*.*.*
+#%dir %{_libdir}/libkdcraw6
+#%attr(755,root,root) %{_libdir}/libkdcraw6/kdcraw
+#%{_libdir}/libkdcraw6/CAMERALIST
 %{_datadir}/apps/libkdcraw
 %{_iconsdir}/hicolor/*x*/apps/kdcraw.png
 
 %files -n kde4-libkexiv2
 %defattr(644,root,root,755)
-%{_libdir}/libkexiv2.so
-%attr(755,root,root) %{_libdir}/libkexiv2.so.6
-%attr(755,root,root) %{_libdir}/libkexiv2.so.6.0.0
-%{_pkgconfigdir}/libkexiv2.pc
+%attr(755,root,root) %ghost %{_libdir}/libkexiv2.so.?
+%attr(755,root,root) %{_libdir}/libkexiv2.so.*.*.*
 
-%files -n kde4-kipiplugins
+%files -n kde4-libkipi
 %defattr(644,root,root,755)
-%{_libdir}/libkipi.so
-%attr(755,root,root) %{_libdir}/libkipi.so.5
-%attr(755,root,root) %{_libdir}/libkipi.so.5.0.0
-%{_pkgconfigdir}/libkipi.pc
+%attr(755,root,root) %ghost %{_libdir}/libkipi.so.?
+%attr(755,root,root) %{_libdir}/libkipi.so.*.*.*
 %{_datadir}/apps/kipi
 %{_iconsdir}/hicolor/*x*/apps/kipi.png
 %{_iconsdir}/hicolor/16x16/actions/black-white.png
