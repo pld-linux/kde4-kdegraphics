@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
 Version:	4.1.85
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -351,7 +351,6 @@ libkexiv2.
 Summary:	kipi libary
 Summary(pl.UTF-8):	Biblioteka kipi
 Group:		X11/Libraries
-Conflicts:	libkipi
 Obsoletes:	kde4-kipiplugins
 
 %description -n kde4-libkipi
@@ -422,6 +421,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/okular
 %{_datadir}/apps/cmake/modules/FindOkular.cmake
 %{_datadir}/apps/cmake/modules/FindKSane.cmake
+%{_pkgconfigdir}/libkdcraw.pc
+%{_pkgconfigdir}/libkexiv2.pc
+%{_pkgconfigdir}/libkipi.pc
 %{_pkgconfigdir}/libksane.pc
 %{_includedir}/libkdcraw
 %{_includedir}/libkexiv2
@@ -545,7 +547,6 @@ rm -rf $RPM_BUILD_ROOT
 #%dir %{_libdir}/libkdcraw6
 #%attr(755,root,root) %{_libdir}/libkdcraw6/kdcraw
 #%{_libdir}/libkdcraw6/CAMERALIST
-%{_pkgconfigdir}/libkdcraw.pc
 %{_datadir}/apps/libkdcraw
 %{_iconsdir}/hicolor/*x*/apps/kdcraw.png
 
@@ -553,13 +554,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %ghost %{_libdir}/libkexiv2.so.?
 %attr(755,root,root) %{_libdir}/libkexiv2.so.*.*.*
-%{_pkgconfigdir}/libkexiv2.pc
 
 %files -n kde4-libkipi
 %defattr(644,root,root,755)
 %attr(755,root,root) %ghost %{_libdir}/libkipi.so.?
 %attr(755,root,root) %{_libdir}/libkipi.so.*.*.*
-%{_pkgconfigdir}/libkipi.pc
 %{_datadir}/apps/kipi
 %{_iconsdir}/hicolor/*x*/apps/kipi.png
 %{_iconsdir}/hicolor/16x16/actions/black-white.png
