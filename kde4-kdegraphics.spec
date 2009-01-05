@@ -14,7 +14,7 @@ Version:	4.1.87
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	ftp://ftp.pbone.net/mirror/ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 # Source0-md5:	41b71a7b4e36067971606521e57f319b
 Patch0:		%{name}-CMakeLists.patch
 URL:		http://www.kde.org/
