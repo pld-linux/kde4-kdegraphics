@@ -10,12 +10,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.1.87
+Version:	4.1.96
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	41b71a7b4e36067971606521e57f319b
+# Source0-md5:	7c8d131404c8e464f553fa1515cebc40
 Patch0:		%{name}-CMakeLists.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
@@ -516,7 +516,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/ServiceMenus/slideshow.desktop
 #
 %{_iconsdir}/hicolor/*/apps/okular.png
-%{_iconsdir}/hicolor/scalable/apps/okular.svgz
+#%{_iconsdir}/hicolor/scalable/apps/okular.svgz
 %{_kdedocdir}/en/okular
 
 %files gwenview
@@ -537,7 +537,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/gvpart.desktop
 %{_desktopdir}/kde4/gwenview.desktop
 %{_iconsdir}/*/*/apps/gwenview.png
-%{_iconsdir}/*/scalable/apps/gwenview.svgz
+#%{_iconsdir}/*/scalable/apps/gwenview.svgz
 %{_kdedocdir}/en/gwenview
 
 %files -n kde4-libkdcraw
