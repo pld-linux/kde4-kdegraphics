@@ -1,6 +1,4 @@
-#
-# Conditional build:
-#
+# TODO: real descs for okular and KIPI libs
 %define		_state		stable
 %define		qtver		4.4.3
 
