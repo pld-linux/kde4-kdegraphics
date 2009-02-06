@@ -292,16 +292,16 @@ KSVG stanowi implementację dla KDE specyfikacji skalowalnej grafiki
 wektorowej (SVG - Scalable Vector Graphics).
 
 %package okular
-Summary:	KDE okular
-Summary(pl.UTF-8):	KDE okular
+Summary:	KDE universal document viewer
+Summary(pl.UTF-8):	Uniwersalna przeglądarka dokumentów dla KDE
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdelibs >= %{version}
 
 %description okular
-Okular.
+Okular is a universal document browser for KDE.
 
 %description okular -l pl.UTF-8
-Okular.
+Okular to uniwersalna przeglądarka dokumentów dla KDE.
 
 %package gwenview
 Summary:	Simple image viewer for KDE
@@ -326,39 +326,39 @@ bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
 obsługiwane przez zainstalowaną wersję Qt.
 
 %package -n kde4-libkdcraw
-Summary:	KDcraw libary
+Summary:	KDcraw library
 Summary(pl.UTF-8):	Biblioteka KDcraw
 Group:		X11/Libraries
 Obsoletes:	libkdcraw
 
 %description -n kde4-libkdcraw
-The KDcraw Library is part of the KIPI Project.
+The KDcraw library is part of the KIPI Project.
 
 %description -n kde4-libkdcraw -l pl.UTF-8
 Biblioteka KDcraw jest częścią projektu KIPI.
 
 %package -n kde4-libkexiv2
-Summary:	libkexiv2 libary
+Summary:	libkexiv2 library
 Summary(pl.UTF-8):	Biblioteka libkexiv2
 Group:		X11/Libraries
 
 %description -n kde4-libkexiv2
-libkexiv2.
+libkexiv2 library.
 
 %description -n kde4-libkexiv2 -l pl.UTF-8
-libkexiv2.
+Biblioteka libkexiv2.
 
 %package -n kde4-libkipi
-Summary:	kipi libary
+Summary:	kipi library
 Summary(pl.UTF-8):	Biblioteka kipi
 Group:		X11/Libraries
 Obsoletes:	kde4-kipiplugins
 
 %description -n kde4-libkipi
-libkipi.
+libkipi library.
 
 %description -n kde4-libkipi -l pl.UTF-8
-libkipi.
+Biblioteka libkipi.
 
 %prep
 %setup -q -n %{orgname}-%{version}
