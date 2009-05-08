@@ -21,7 +21,7 @@ BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	QtCore-devel >= %{qtver}
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	chmlib-devel
-BuildRequires:	cmake >= 2.6.2
+BuildRequires:	cmake >= 2.6.3
 BuildRequires:	djvulibre-devel
 BuildRequires:	ebook-tools-devel
 BuildRequires:	ed
