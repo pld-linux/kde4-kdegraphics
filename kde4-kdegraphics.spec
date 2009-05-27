@@ -505,11 +505,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libokularcore.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libokularcore.so.?
 %attr(755,root,root) %{_libdir}/kde4/okular*.so
+%attr(755,root,root) %{_libdir}/kde4/mobithumbnail.so
+%attr(755,root,root) %{_libdir}/kde4/rawthumbnail.so
+%attr(755,root,root) %{_libdir}/strigi/strigila_mobi.so
 %{_datadir}/apps/okular
 %{_datadir}/config.kcfg/okular.kcfg
 %{_datadir}/config/okular.knsrc
 %{_datadir}/kde4/services/okular*.desktop
 %{_datadir}/kde4/services/libokular*.desktop
+%{_datadir}/kde4/services/mobithumbnail.desktop                                                                                                                               
+%{_datadir}/kde4/services/rawthumbnail.desktop  
 %{_datadir}/kde4/servicetypes/okular*.desktop
 %{_desktopdir}/kde4/okular*.desktop
 # ??
