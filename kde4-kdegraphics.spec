@@ -1,6 +1,6 @@
 # TODO: real descs for okular and KIPI libs
 %define		_state		stable
-%define		qtver		4.5.0
+%define		qtver		4.5.1
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
@@ -8,12 +8,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.2.3
-Release:	3
+Version:	4.2.4
+Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	29e9a466cd2b282a5139aeca8cc312a2
+# Source0-md5:	34d7cf506dea9ab4dc78e9901c96391e
 Patch0:		%{name}-CMakeLists.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
