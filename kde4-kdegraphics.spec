@@ -366,6 +366,7 @@ install -d build
 cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	-DLIB_INSTALL_DIR=%{_libdir} \
 	-DGWENVIEW_SEMANTICINFO_BACKEND=Nepomuk \
 	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
 	-DCMAKE_BUILD_TYPE=%{!?debug:release}%{?debug:debug} \
