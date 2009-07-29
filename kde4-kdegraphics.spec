@@ -1,6 +1,6 @@
 # TODO: real descs for okular and KIPI libs
 %define		_state		stable
-%define		qtver		4.5.1
+%define		qtver		4.5.2
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
@@ -8,13 +8,13 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.2.4
-Release:	3
+Version:	4.3.0
+Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	34d7cf506dea9ab4dc78e9901c96391e
-Patch0:		%{name}-CMakeLists.patch
+# Source0-md5:	5d3838a2575a82777f00ced90332c41a
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -44,9 +44,7 @@ BuildRequires:	libtiff-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	libxml2-progs
 BuildRequires:	poppler-Qt-devel
-BuildRequires:	poppler-qt-devel
 BuildRequires:	qca-devel >= 2.0.0
-BuildRequires:	qimageblitz-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sane-backends-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
@@ -361,13 +359,13 @@ Biblioteka libkipi.
 
 %prep
 %setup -q -n %{orgname}-%{version}
-%patch0 -p0
 
 %build
 install -d build
 cd build
 %cmake \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	-DLIB_INSTALL_DIR=%{_libdir} \
 	-DGWENVIEW_SEMANTICINFO_BACKEND=Nepomuk \
 	-DSYSCONF_INSTALL_DIR=%{_sysconfdir} \
 	-DCMAKE_BUILD_TYPE=%{!?debug:release}%{?debug:debug} \
@@ -506,11 +504,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libokularcore.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libokularcore.so.?
 %attr(755,root,root) %{_libdir}/kde4/okular*.so
+%attr(755,root,root) %{_libdir}/kde4/mobithumbnail.so
+%attr(755,root,root) %{_libdir}/kde4/rawthumbnail.so
+%attr(755,root,root) %{_libdir}/strigi/strigila_mobi.so
 %{_datadir}/apps/okular
 %{_datadir}/config.kcfg/okular.kcfg
 %{_datadir}/config/okular.knsrc
 %{_datadir}/kde4/services/okular*.desktop
 %{_datadir}/kde4/services/libokular*.desktop
+%{_datadir}/kde4/services/mobithumbnail.desktop                                                                                                                               
+%{_datadir}/kde4/services/rawthumbnail.desktop  
 %{_datadir}/kde4/servicetypes/okular*.desktop
 %{_desktopdir}/kde4/okular*.desktop
 # ??
