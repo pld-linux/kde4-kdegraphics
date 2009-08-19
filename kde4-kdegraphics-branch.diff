@@ -1,7 +1,7 @@
 Index: libs/libksane/libksane/ksane_viewer.cpp
 ===================================================================
---- libs/libksane/libksane/ksane_viewer.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ libs/libksane/libksane/ksane_viewer.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- libs/libksane/libksane/ksane_viewer.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ libs/libksane/libksane/ksane_viewer.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -244,8 +244,8 @@
  {
      if ((d->selection->rect().width() >0.001) &&
@@ -15,8 +15,8 @@ Index: libs/libksane/libksane/ksane_viewer.cpp
      }
 Index: gwenview/app/kipiinterface.cpp
 ===================================================================
---- gwenview/app/kipiinterface.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ gwenview/app/kipiinterface.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- gwenview/app/kipiinterface.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ gwenview/app/kipiinterface.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -352,8 +352,7 @@
  
  
@@ -29,8 +29,8 @@ Index: gwenview/app/kipiinterface.cpp
  } //namespace
 Index: gwenview/app/main.cpp
 ===================================================================
---- gwenview/app/main.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ gwenview/app/main.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- gwenview/app/main.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ gwenview/app/main.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -39,7 +39,7 @@
  		"gwenview",        /* appname */
  		0,                 /* catalogName */
@@ -42,8 +42,8 @@ Index: gwenview/app/main.cpp
  	aboutData.setCopyrightStatement(ki18n("Copyright 2000-2009 Aurélien Gâteau"));
 Index: gwenview/part/gvpart.cpp
 ===================================================================
---- gwenview/part/gvpart.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ gwenview/part/gvpart.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- gwenview/part/gvpart.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ gwenview/part/gvpart.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -116,7 +116,7 @@
  		"gvpart",                /* appname */
  		"gwenview",              /* catalogName */
@@ -55,8 +55,8 @@ Index: gwenview/part/gvpart.cpp
  	aboutData->setCopyrightStatement(ki18n("Copyright 2000-2008 Aurélien Gâteau"));
 Index: gwenview/NEWS
 ===================================================================
---- gwenview/NEWS	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ gwenview/NEWS	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- gwenview/NEWS	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ gwenview/NEWS	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -1,3 +1,7 @@
 +# 2.3.1
 +## Fixes
@@ -67,8 +67,8 @@ Index: gwenview/NEWS
  - Gwenview can now play videos (bug #174522).
 Index: thumbnailers/mobi/mobithumbnail.desktop
 ===================================================================
---- thumbnailers/mobi/mobithumbnail.desktop	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ thumbnailers/mobi/mobithumbnail.desktop	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- thumbnailers/mobi/mobithumbnail.desktop	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ thumbnailers/mobi/mobithumbnail.desktop	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -4,7 +4,7 @@
  Name[ar]=مولد مصغرات Mobipocket
  Name[ca]=Miniaturitzador de Mobipocket
@@ -89,8 +89,8 @@ Index: thumbnailers/mobi/mobithumbnail.desktop
  Name[sr@latin]=Generator sličica za Mobipocket
 Index: okular/core/document.cpp
 ===================================================================
---- okular/core/document.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ okular/core/document.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- okular/core/document.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ okular/core/document.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -113,6 +113,7 @@
      Qt::CaseSensitivity cachedCaseSensitivity;
      bool cachedViewportMove : 1;
@@ -229,8 +229,8 @@ Index: okular/core/document.cpp
  void Document::resetSearch( int searchID )
 Index: okular/generators/dvi/psgs.cpp
 ===================================================================
---- okular/generators/dvi/psgs.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ okular/generators/dvi/psgs.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- okular/generators/dvi/psgs.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ okular/generators/dvi/psgs.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -215,6 +215,7 @@
    // Step 2: Call GS with the File
    QFile::remove(filename.toAscii());
@@ -259,8 +259,8 @@ Index: okular/generators/dvi/psgs.cpp
  	  gs_generate_graphics_file(page, filename, magnification);
 Index: okular/generators/tiff/libokularGenerator_tiff.desktop
 ===================================================================
---- okular/generators/tiff/libokularGenerator_tiff.desktop	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ okular/generators/tiff/libokularGenerator_tiff.desktop	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- okular/generators/tiff/libokularGenerator_tiff.desktop	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ okular/generators/tiff/libokularGenerator_tiff.desktop	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -15,6 +15,7 @@
  Name[ga]=Leabharlann TIFF Okular
  Name[gl]=Biblioteca TIFF de Okular
@@ -271,8 +271,8 @@ Index: okular/generators/tiff/libokularGenerator_tiff.desktop
  Name[it]=Libreria TIFF di Okular
 Index: okular/generators/comicbook/libokularGenerator_comicbook.desktop
 ===================================================================
---- okular/generators/comicbook/libokularGenerator_comicbook.desktop	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ okular/generators/comicbook/libokularGenerator_comicbook.desktop	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- okular/generators/comicbook/libokularGenerator_comicbook.desktop	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ okular/generators/comicbook/libokularGenerator_comicbook.desktop	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -13,6 +13,7 @@
  Name[gl]=Libro de Cómic
  Name[hi]=कॉमिक पुस्तिका
@@ -283,8 +283,8 @@ Index: okular/generators/comicbook/libokularGenerator_comicbook.desktop
  Name[ko]=만화책
 Index: kolourpaint/document/kpDocument_Open.cpp
 ===================================================================
---- kolourpaint/document/kpDocument_Open.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ kolourpaint/document/kpDocument_Open.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- kolourpaint/document/kpDocument_Open.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ kolourpaint/document/kpDocument_Open.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -217,6 +217,13 @@
              detectedMimeTypePtr != KMimeType::defaultMimeTypePtr ())
          {
@@ -301,8 +301,8 @@ Index: kolourpaint/document/kpDocument_Open.cpp
          if (saveOptions)
 Index: ksnapshot/regiongrabber.cpp
 ===================================================================
---- ksnapshot/regiongrabber.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013414)
-+++ ksnapshot/regiongrabber.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013414)
+--- ksnapshot/regiongrabber.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
++++ ksnapshot/regiongrabber.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
 @@ -28,7 +28,8 @@
  #include <KWindowSystem>
  
