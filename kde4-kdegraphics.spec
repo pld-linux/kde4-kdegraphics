@@ -1,6 +1,7 @@
 # TODO: real descs for okular and KIPI libs
-%define		_state		stable
+%define		_state		unstable
 %define		qtver		4.5.2
+%define		snap		svn1010339
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
@@ -8,13 +9,14 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.3.0
-Release:	3
+Version:	4.3.64
+Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	5d3838a2575a82777f00ced90332c41a
-Patch100:	%{name}-branch.diff
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}%{snap}.tar.bz2
+# Source0-md5:	303289dafd6261bf925f94cb9896a612
+#Patch100: %{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
@@ -124,11 +126,11 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-gwenview = %{version}-%{release}
 Requires:	%{name}-kolourpaint = %{version}-%{release}
 Requires:	%{name}-ksane = %{version}-%{release}
+Requires:	%{name}-okular = %{version}-%{release}
+Requires:	kde4-kdelibs-devel
 Requires:	kde4-libkdcraw = %{version}-%{release}
 Requires:	kde4-libkexiv2 = %{version}-%{release}
 Requires:	kde4-libkipi = %{version}-%{release}
-Requires:	%{name}-okular = %{version}-%{release}
-Requires:	kde4-kdelibs-devel
 
 %description devel
 kdegraphics development files.
@@ -155,12 +157,12 @@ configure your camera model and port type from a list in KControl,
 then start accessing the camera contents with a kamera:/ URL.
 
 %description kamera -l pl.UTF-8
-kamera to moduł IO slave oraz panelu KControl umożliwiający dostęp do
-folderów i zdjęć w dowolnym aparacie cyfrowym obsługiwanym przez
-biblioteki gPhoto2. Jeśli mamy obsługiwany aparat, można zacząć używać
-go w większości aplikacji KDE w dwóch krokach: wybrać model i port
-aparatu z listy w KControl, a następnie odwoływać się do zawartości
-aparatu przez URL kamera:/.
+kamera to moduł IO slave oraz panelu KControl umożliwiający dostęp
+do folderów i zdjęć w dowolnym aparacie cyfrowym obsługiwanym
+przez biblioteki gPhoto2. Jeśli mamy obsługiwany aparat, można
+zacząć używać go w większości aplikacji KDE w dwóch krokach:
+wybrać model i port aparatu z listy w KControl, a następnie
+odwoływać się do zawartości aparatu przez URL kamera:/.
 
 %package kcolorchooser
 Summary:	Color chooser
@@ -185,8 +187,8 @@ This package adds a fold to konqueror "file properties" dialog window
 with file enhanced informations.
 
 %description kfile -l pl.UTF-8
-Ten pakiet dodaje do okna dialogowego "właściwości pliku" konquerora
-dodatkową zakładkę z rozszerzonymi informacjami o pliku.
+Ten pakiet dodaje do okna dialogowego "właściwości pliku"
+konquerora dodatkową zakładkę z rozszerzonymi informacjami o pliku.
 
 %package kgamma
 Summary:	A monitor calibration tool
@@ -228,8 +230,8 @@ KRuler is a very simple application, with only one aim in life. To
 measure distances on your screen.
 
 %description kruler -l pl.UTF-8
-KRuler jest prostą aplikacją, z tylko jednym celem w życiu: mierzenie
-odległości na ekranie.
+KRuler jest prostą aplikacją, z tylko jednym celem w życiu:
+mierzenie odległości na ekranie.
 
 %description kruler -l pt_BR.UTF-8
 Régua de pixels para a tela.
@@ -268,8 +270,8 @@ single window. The images can then be saved in a variety of formats.
 
 %description ksnapshot -l pl.UTF-8
 KSnapshot to prosta aplikacja do robienia zrzutów ekranu. Potrafi
-przechwytywać obraz całego pulpitu lub tylko pojedynczego okna. Obrazy
-mogą być następnie zapisane w wielu formatach.
+przechwytywać obraz całego pulpitu lub tylko pojedynczego okna.
+Obrazy mogą być następnie zapisane w wielu formatach.
 
 %description ksnapshot -l pt_BR.UTF-8
 Programa de captura de tela.
@@ -316,10 +318,10 @@ Qt library, so it supports all image formats your Qt installation
 supports.
 
 %description gwenview -l pl.UTF-8
-Gwenview to przeglądarka obrazków dla KDE. Ma okno z drzewem katalogów
-oraz okno z listą plików w celu zapewnienia łatwej nawigacji w
-hierarchii plików. Wczytywanie obrazków jest wykonywane przez
-bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
+Gwenview to przeglądarka obrazków dla KDE. Ma okno z drzewem
+katalogów oraz okno z listą plików w celu zapewnienia łatwej
+nawigacji w hierarchii plików. Wczytywanie obrazków jest wykonywane
+przez bibliotekę Qt, więc przeglądarka obsługuje wszystkie formaty
 obsługiwane przez zainstalowaną wersję Qt.
 
 %package -n kde4-libkdcraw
@@ -358,8 +360,9 @@ libkipi library.
 Biblioteka libkipi.
 
 %prep
-%setup -q -n %{orgname}-%{version}
-%patch100 -p0
+%setup -q -n %{orgname}-%{version}%{snap}
+#%setup -q -n %{orgname}-%{version}
+#%patch100 -p0
 
 %build
 install -d build
@@ -448,7 +451,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde4/gsthumbnail.so
 %{_datadir}/kde4/services/gsthumbnail.desktop
 %{_datadir}/config.kcfg/gssettings.kcfg
-%attr(755,root,root) %{_libdir}/strigi/strigita_dvi.so
+%attr(755,root,root) %{_libdir}/strigi/strigiea_dvi.so
+%attr(755,root,root) %{_libdir}/strigi/strigiea_tiff.so
 
 %files kgamma
 %defattr(644,root,root,755)
@@ -513,8 +517,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config/okular.knsrc
 %{_datadir}/kde4/services/okular*.desktop
 %{_datadir}/kde4/services/libokular*.desktop
-%{_datadir}/kde4/services/mobithumbnail.desktop                                                                                                                               
-%{_datadir}/kde4/services/rawthumbnail.desktop  
+%{_datadir}/kde4/services/mobithumbnail.desktop
+%{_datadir}/kde4/services/rawthumbnail.desktop
 %{_datadir}/kde4/servicetypes/okular*.desktop
 %{_desktopdir}/kde4/okular*.desktop
 # ??
@@ -527,6 +531,7 @@ rm -rf $RPM_BUILD_ROOT
 %files gwenview
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/gwenview
+%attr(755,root,root) %{_bindir}/gwenview_importer
 %attr(755,root,root) %{_libdir}/libgwenviewlib.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgwenviewlib.so.?
 %attr(755,root,root) %{_libdir}/kde4/gvpart.so
@@ -552,6 +557,7 @@ rm -rf $RPM_BUILD_ROOT
 #%dir %{_libdir}/libkdcraw6
 #%attr(755,root,root) %{_libdir}/libkdcraw6/kdcraw
 #%{_libdir}/libkdcraw6/CAMERALIST
+%{_datadir}/apps/solid/actions/solid_camera.desktop
 %{_datadir}/apps/libkdcraw
 %{_iconsdir}/hicolor/*x*/apps/kdcraw.png
 
@@ -559,6 +565,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %ghost %{_libdir}/libkexiv2.so.?
 %attr(755,root,root) %{_libdir}/libkexiv2.so.*.*.*
+%dir %{_datadir}/apps/libkexiv2
+%dir %{_datadir}/apps/libkexiv2/data
+%{_datadir}/apps/libkexiv2/data/topicset.iptc-subjectcode.xml
 
 %files -n kde4-libkipi
 %defattr(644,root,root,755)
