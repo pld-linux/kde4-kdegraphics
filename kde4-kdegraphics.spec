@@ -1,7 +1,7 @@
 # TODO: real descs for okular and KIPI libs
 %define		_state		unstable
 %define		qtver		4.5.2
-%define		snap		svn1013471
+%define		snap		svn1020033
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
@@ -9,13 +9,13 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.3.65
+Version:	4.3.67
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}%{snap}.tar.bz2
-# Source0-md5:	ee875453df10c929393efbae4b645259
+# Source0-md5:	3cf33a81bd23d02df21d73ddf97770ce
 #Patch100: %{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
@@ -546,6 +546,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/msits.protocol
 %{_datadir}/kde4/services/gvpart.desktop
 %{_desktopdir}/kde4/gwenview.desktop
+%{_datadir}/apps/solid/actions/gwenview_importer.desktop
 %{_iconsdir}/*/*/apps/gwenview.png
 #%{_iconsdir}/*/scalable/apps/gwenview.svgz
 %{_kdedocdir}/en/gwenview
