@@ -1,7 +1,7 @@
 # TODO: real descs for okular and KIPI libs
 %define		_state		unstable
-%define		qtver		4.5.2
-%define		snap		svn1027298
+%define		qtver		4.6.0
+%define		snap		svn1035674
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
@@ -9,13 +9,13 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.3.69
+Version:	4.3.72
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}%{snap}.tar.bz2
-# Source0-md5:	92cb542c88ee356c23ea089ede7cd68b
+# Source0-md5:	e57bf3fc199cdc1d6969f038f7f5c165
 #Patch100: %{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
@@ -461,7 +461,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kgamma
 %{_datadir}/kde4/services/kgamma.desktop
 %{_iconsdir}/*/*/apps/kgamma.png
-%{_kdedocdir}/en/kgamma/
+#%{_kdedocdir}/en/kgamma/
 
 %files kolourpaint
 %defattr(644,root,root,755)
@@ -471,7 +471,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kolourpaint
 %{_desktopdir}/kde4/kolourpaint.desktop
 %{_iconsdir}/*/*/apps/kolourpaint.*
-%{_kdedocdir}/en/kolourpaint
+#%{_kdedocdir}/en/kolourpaint
 
 %files kruler
 %defattr(644,root,root,755)
@@ -479,7 +479,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kruler
 %{_desktopdir}/kde4/kruler.desktop
 %{_iconsdir}/*/*/apps/kruler.*
-%{_kdedocdir}/en/kruler
+#%{_kdedocdir}/en/kruler
 
 %files ksane
 %defattr(644,root,root,755)
@@ -495,7 +495,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde4/ksnapshot.desktop
 %{_iconsdir}/*/*/apps/ksnapshot.*
 %{_datadir}/dbus-1/interfaces/org.kde.ksnapshot.xml
-%{_kdedocdir}/en/ksnapshot
+#%{_kdedocdir}/en/ksnapshot
 
 %files svgpart
 %defattr(644,root,root,755)
@@ -526,7 +526,7 @@ rm -rf $RPM_BUILD_ROOT
 #
 %{_iconsdir}/hicolor/*/apps/okular.png
 #%{_iconsdir}/hicolor/scalable/apps/okular.svgz
-%{_kdedocdir}/en/okular
+#%{_kdedocdir}/en/okular
 
 %files gwenview
 %defattr(644,root,root,755)
@@ -549,7 +549,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/solid/actions/gwenview_importer.desktop
 %{_iconsdir}/*/*/apps/gwenview.png
 #%{_iconsdir}/*/scalable/apps/gwenview.svgz
-%{_kdedocdir}/en/gwenview
+#%{_kdedocdir}/en/gwenview
 
 %files -n kde4-libkdcraw
 %defattr(644,root,root,755)
