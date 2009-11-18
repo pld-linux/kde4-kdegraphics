@@ -1,7 +1,7 @@
 # TODO: real descs for okular and KIPI libs
 %define		_state		unstable
 %define		qtver		4.6.0
-%define		snap		svn1044032
+%define		snap		svn1048496
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
@@ -9,13 +9,13 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.3.74
+Version:	4.3.75
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}%{snap}.tar.bz2
-# Source0-md5:	56fc8c7ccb6540bc233a96dad7869e8d
+# Source0-md5:	63e8de10c9f66f413d9b58814b95769f
 #Patch100: %{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
