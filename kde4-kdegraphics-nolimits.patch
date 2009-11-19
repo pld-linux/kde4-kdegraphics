@@ -1,0 +1,99 @@
+--- kdegraphics-4.3.3/okular/part.cpp~	2009-10-30 13:30:15.000000000 +0100
++++ kdegraphics-4.3.3/okular/part.cpp	2009-11-19 13:43:12.979602320 +0100
+@@ -1973,12 +1973,6 @@
+ 
+ void Part::doPrint(QPrinter &printer)
+ {
+-    if (!m_document->isAllowed(Okular::AllowPrint))
+-    {
+-        KMessageBox::error(widget(), i18n("Printing this document is not allowed."));
+-        return;
+-    }
+-
+     if (!m_document->print(printer))
+     {
+         KMessageBox::error(widget(), i18n("Could not print the document. Please report to bugs.kde.org"));
+--- kdegraphics-4.3.3/okular/ui/pageview.cpp~	2009-10-30 13:30:15.000000000 +0100
++++ kdegraphics-4.3.3/okular/ui/pageview.cpp	2009-11-19 13:45:02.073758178 +0100
+@@ -786,7 +786,7 @@
+                 w->setPageItem( item );
+                 w->setFormWidgetsController( d->formWidgetsController() );
+                 w->setVisibility( false );
+-                w->setCanBeFilled( d->document->isAllowed( Okular::AllowFillForms ) );
++                w->setCanBeFilled( true );
+                 item->formWidgets().insert( ff->id(), w );
+                 hasformwidgets = true;
+             }
+@@ -855,7 +855,7 @@
+     { // may be null if dummy mode is on
+         d->aToggleForms->setEnabled( haspages && hasformwidgets );
+     }
+-    bool allowAnnotations = d->document->isAllowed( Okular::AllowNotes );
++    bool allowAnnotations = true;
+     if ( d->annotator )
+     {
+         bool allowTools = haspages && allowAnnotations;
+@@ -2022,11 +2022,6 @@
+             {
+                 menu.addTitle( i18np( "Text (1 character)", "Text (%1 characters)", selectedText.length() ) );
+                 textToClipboard = menu.addAction( KIcon("edit-copy"), i18n( "Copy to Clipboard" ) );
+-                if ( !d->document->isAllowed( Okular::AllowCopy ) )
+-                {
+-                    textToClipboard->setEnabled( false );
+-                    textToClipboard->setText( i18n("Copy forbidden by DRM") );
+-                }
+                 if ( Okular::Settings::useKTTSD() )
+                     speakText = menu.addAction( KIcon("text-speak"), i18n( "Speak Text" ) );
+             }
+@@ -2109,7 +2104,7 @@
+                 {
+                     d->mouseTextSelecting = false;
+ //                    textSelectionClear();
+-                    if ( d->document->isAllowed( Okular::AllowCopy ) )
++                    if ( true )
+                     {
+                         const QString text = d->selectedText();
+                         if ( !text.isEmpty() )
+@@ -2127,11 +2122,6 @@
+                     QAction *speakText = 0;
+                     if ( Okular::Settings::useKTTSD() )
+                         speakText = menu.addAction( KIcon( "text-speak" ), i18n( "Speak Text" ) );
+-                    if ( !d->document->isAllowed( Okular::AllowCopy ) )
+-                    {
+-                        textToClipboard->setEnabled( false );
+-                        textToClipboard->setText( i18n("Copy forbidden by DRM") );
+-                    }
+                     QAction *choice = menu.exec( e->globalPos() );
+                     // check if the user really selected an action
+                     if ( choice )
+@@ -3323,7 +3313,7 @@
+     if ( !d->annotator )
+     {
+         d->annotator = new PageViewAnnotator( this, d->document );
+-        bool allowTools = d->document->pages() > 0 && d->document->isAllowed( Okular::AllowNotes );
++        bool allowTools = d->document->pages() > 0;
+         d->annotator->setToolsEnabled( allowTools );
+         d->annotator->setTextToolsEnabled( allowTools && d->document->supportsSearching() );
+     }
+--- kdegraphics-4.3.3/okular/ui/annotationpropertiesdialog.cpp~	2008-08-28 18:12:12.000000000 +0200
++++ kdegraphics-4.3.3/okular/ui/annotationpropertiesdialog.cpp	2009-11-19 13:45:37.372922350 +0100
+@@ -34,7 +34,7 @@
+ {
+     setFaceType( Tabbed );
+     m_annot=ann;
+-    bool canEditAnnotations = !(ann->flags() & Okular::Annotation::External) && m_document->isAllowed( Okular::AllowNotes );
++    bool canEditAnnotations = !(ann->flags() & Okular::Annotation::External);
+     setCaptionTextbyAnnotType();
+     if ( canEditAnnotations )
+     {
+--- kdegraphics-4.3.3/okular/ui/annotationpopup.cpp~	2008-08-14 12:44:45.000000000 +0200
++++ kdegraphics-4.3.3/okular/ui/annotationpopup.cpp	2009-11-19 13:46:16.916252021 +0100
+@@ -50,7 +50,7 @@
+     popoutWindow = menu.addAction( KIcon( "comment" ), i18n( "&Open Pop-up Note" ) );
+     popoutWindow->setEnabled( onlyOne );
+     deleteNote = menu.addAction( KIcon( "list-remove" ), i18n( "&Delete" ) );
+-    deleteNote->setEnabled( mDocument->isAllowed( Okular::AllowNotes ) );
++    deleteNote->setEnabled( true );
+ 
+     if ( onlyOne && mAnnotations.first().first->flags() & Okular::Annotation::DenyDelete )
+         deleteNote->setEnabled( false );
