@@ -9,13 +9,12 @@ Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.3.75
+Version:	4.3.80
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}%{snap}.tar.bz2
-# Source0-md5:	63e8de10c9f66f413d9b58814b95769f
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
+# Source0-md5:	a18906933f28235ebe77b52df576bfc7
 #Patch100: %{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
@@ -27,7 +26,7 @@ BuildRequires:	cmake >= 2.6.3
 BuildRequires:	djvulibre-devel
 BuildRequires:	ebook-tools-devel
 BuildRequires:	ed
-BuildRequires:	exiv2-devel
+BuildRequires:	exiv2-devel >= 0.18.2
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	gettext-devel
 BuildRequires:	ghostscript-devel
@@ -360,8 +359,7 @@ libkipi library.
 Biblioteka libkipi.
 
 %prep
-%setup -q -n %{orgname}-%{version}%{snap}
-#%setup -q -n %{orgname}-%{version}
+%setup -q -n %{orgname}-%{version}
 #%patch100 -p0
 
 %build
@@ -461,7 +459,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kgamma
 %{_datadir}/kde4/services/kgamma.desktop
 #%{_iconsdir}/*/*/apps/kgamma.png
-%{_kdedocdir}/en/kgamma/
+%{_kdedocdir}/en/kcontrol/kgamma/
 
 %files kolourpaint
 %defattr(644,root,root,755)
