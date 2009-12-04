@@ -19,7 +19,11 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	Qt3Support-devel
 BuildRequires:	QtCore-devel >= %{qtver}
+BuildRequires:	QtNetwork-devel
+BuildRequires:	QtSvg-devel
+BuildRequires:	QtTest-devel
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	chmlib-devel
 BuildRequires:	cmake >= 2.6.3
@@ -44,10 +48,15 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	libxml2-progs
+BuildRequires:	pkgconfig
 BuildRequires:	poppler-Qt-devel
 BuildRequires:	qca-devel >= 2.0.0
+BuildRequires:	qimageblitz-devel
+BuildRequires:	qt4-build
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sane-backends-devel
+BuildRequires:	soprano-devel
+BuildRequires:	strigi-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
