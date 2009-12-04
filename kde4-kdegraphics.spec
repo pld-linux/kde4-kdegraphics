@@ -19,7 +19,11 @@ Patch0:		%{name}-nolimits.patch
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
 BuildRequires:	OpenGL-GLU-devel
+BuildRequires:	Qt3Support-devel
 BuildRequires:	QtCore-devel >= %{qtver}
+BuildRequires:	QtNetwork-devel
+BuildRequires:	QtSvg-devel
+BuildRequires:	QtTest-devel
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	chmlib-devel
 BuildRequires:	cmake >= 2.6.3
@@ -44,10 +48,15 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	libxml2-progs
+BuildRequires:	pkgconfig
 BuildRequires:	poppler-Qt-devel
 BuildRequires:	qca-devel >= 2.0.0
+BuildRequires:	qimageblitz-devel
+BuildRequires:	qt4-build
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sane-backends-devel
+BuildRequires:	soprano-devel
+BuildRequires:	strigi-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -125,11 +134,11 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-gwenview = %{version}-%{release}
 Requires:	%{name}-kolourpaint = %{version}-%{release}
 Requires:	%{name}-ksane = %{version}-%{release}
+Requires:	%{name}-okular = %{version}-%{release}
+Requires:	kde4-kdelibs-devel
 Requires:	kde4-libkdcraw = %{version}-%{release}
 Requires:	kde4-libkexiv2 = %{version}-%{release}
 Requires:	kde4-libkipi = %{version}-%{release}
-Requires:	%{name}-okular = %{version}-%{release}
-Requires:	kde4-kdelibs-devel
 
 %description devel
 kdegraphics development files.
@@ -515,8 +524,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config/okular.knsrc
 %{_datadir}/kde4/services/okular*.desktop
 %{_datadir}/kde4/services/libokular*.desktop
-%{_datadir}/kde4/services/mobithumbnail.desktop                                                                                                                               
-%{_datadir}/kde4/services/rawthumbnail.desktop  
+%{_datadir}/kde4/services/mobithumbnail.desktop
+%{_datadir}/kde4/services/rawthumbnail.desktop
 %{_datadir}/kde4/servicetypes/okular*.desktop
 %{_desktopdir}/kde4/okular*.desktop
 # ??
