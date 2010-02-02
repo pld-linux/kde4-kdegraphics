@@ -18,12 +18,12 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version
 #Patch100: %{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	OpenEXR-devel >= 1.1.0
-BuildRequires:	OpenGL-GLU-devel
-BuildRequires:	Qt3Support-devel
+BuildRequires:	OpenGL-GLU-devel >= %{qtver}
+BuildRequires:	Qt3Support-devel >= %{qtver}
 BuildRequires:	QtCore-devel >= %{qtver}
-BuildRequires:	QtNetwork-devel
-BuildRequires:	QtSvg-devel
-BuildRequires:	QtTest-devel
+BuildRequires:	QtNetwork-devel >= %{qtver}
+BuildRequires:	QtSvg-devel >= %{qtver}
+BuildRequires:	QtTest-devel >= %{qtver}
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	chmlib-devel
 BuildRequires:	cmake >= 2.8.0
@@ -52,7 +52,8 @@ BuildRequires:	pkgconfig
 BuildRequires:	poppler-Qt-devel
 BuildRequires:	qca-devel >= 2.0.0
 BuildRequires:	qimageblitz-devel
-BuildRequires:	qt4-build
+BuildRequires:	qt4-build >= %{qtver}
+BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sane-backends-devel
 BuildRequires:	soprano-devel
