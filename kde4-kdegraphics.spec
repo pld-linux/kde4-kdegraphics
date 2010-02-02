@@ -1,6 +1,6 @@
 # TODO: real descs for okular and KIPI libs
 %define		_state		unstable
-%define		qtver		4.6.0
+%define		qtver		4.6.1
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
