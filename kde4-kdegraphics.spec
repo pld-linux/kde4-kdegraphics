@@ -26,7 +26,7 @@ BuildRequires:	QtSvg-devel
 BuildRequires:	QtTest-devel
 BuildRequires:	automoc4 >= 0.9.88
 BuildRequires:	chmlib-devel
-BuildRequires:	cmake >= 2.6.3
+BuildRequires:	cmake >= 2.8.0
 BuildRequires:	djvulibre-devel
 BuildRequires:	ebook-tools-devel
 BuildRequires:	ed
