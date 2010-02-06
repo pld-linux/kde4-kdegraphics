@@ -35,7 +35,6 @@ BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	gettext-devel
 BuildRequires:	ghostscript-devel
 BuildRequires:	giflib-devel
-BuildRequires:	imlib-devel
 BuildRequires:	kde4-kdelibs-devel >= %{version}
 BuildRequires:	kpathsea
 BuildRequires:	lcms-devel
