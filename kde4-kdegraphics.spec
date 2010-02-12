@@ -54,6 +54,7 @@ BuildRequires:	qimageblitz-devel
 BuildRequires:	qt4-build
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sane-backends-devel
+BuildRequires:	shared-desktop-ontologies-devel
 BuildRequires:	soprano-devel
 BuildRequires:	strigi-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
