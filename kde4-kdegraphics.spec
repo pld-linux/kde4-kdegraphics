@@ -55,6 +55,7 @@ BuildRequires:	qt4-build >= %{qtver}
 BuildRequires:	qt4-qmake >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sane-backends-devel
+BuildRequires:	shared-desktop-ontologies-devel
 BuildRequires:	soprano-devel
 BuildRequires:	strigi-devel
 BuildRequires:	xorg-lib-libXxf86vm-devel
