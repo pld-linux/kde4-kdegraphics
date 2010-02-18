@@ -16,10 +16,9 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version
 # Source0-md5:	922b647c4b9235fe3eb9a269c00bd436
 #Patch100: %{name}-branch.diff
 URL:		http://www.kde.org/
-BuildRequires:	OpenEXR-devel >= 1.1.0
-BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	Qt3Support-devel >= %{qtver}
 BuildRequires:	QtCore-devel >= %{qtver}
+BuildRequires:	QtDesigner-devel >= %{qtver}
 BuildRequires:	QtNetwork-devel >= %{qtver}
 BuildRequires:	QtSvg-devel >= %{qtver}
 BuildRequires:	QtTest-devel >= %{qtver}
@@ -28,18 +27,10 @@ BuildRequires:	chmlib-devel
 BuildRequires:	cmake >= 2.8.0
 BuildRequires:	djvulibre-devel
 BuildRequires:	ebook-tools-devel
-BuildRequires:	ed
 BuildRequires:	exiv2-devel >= 0.18.2
-BuildRequires:	fribidi-devel >= 0.10.4
-BuildRequires:	gettext-devel
-BuildRequires:	ghostscript-devel
-BuildRequires:	giflib-devel
-BuildRequires:	imlib-devel
 BuildRequires:	kde4-kdelibs-devel >= %{version}
-BuildRequires:	kpathsea
 BuildRequires:	lcms-devel
 BuildRequires:	libgphoto2-devel
-BuildRequires:	libieee1284-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel >= 1.0.8
 BuildRequires:	libspectre-devel
