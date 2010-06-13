@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
 Version:	4.4.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
@@ -295,6 +295,7 @@ Summary:	KDE universal document viewer
 Summary(pl.UTF-8):	Uniwersalna przeglądarka dokumentów dla KDE
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdelibs >= %{version}
+Requires:	kio_msits >= %{version}
 
 %description okular
 Okular is a universal document browser for KDE.
@@ -358,6 +359,13 @@ libkipi library.
 
 %description -n kde4-libkipi -l pl.UTF-8
 Biblioteka libkipi.
+
+%package -n kio_msits
+Summary:	A kioslave for displaying WinHelp files
+Group:		X11/Libraries
+
+%description -n kio_msits
+A kioslave for displaying WinHelp files.
 
 %prep
 %setup -q -n %{orgname}-%{version}
@@ -534,7 +542,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgwenviewlib.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgwenviewlib.so.?
 %attr(755,root,root) %{_libdir}/kde4/gvpart.so
-%attr(755,root,root) %{_libdir}/kde4/kio_msits.so
 %dir %{_datadir}/apps/gwenview
 %dir %{_datadir}/apps/gwenview/cursors
 %{_datadir}/apps/gwenview/cursors/zoom.png
@@ -542,7 +549,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/gwenview/gwenviewui.rc
 %dir %{_datadir}/apps/gvpart
 %{_datadir}/apps/gvpart/gvpart.rc
-%{_datadir}/kde4/services/msits.protocol
 %{_datadir}/kde4/services/gvpart.desktop
 %{_desktopdir}/kde4/gwenview.desktop
 %{_datadir}/apps/solid/actions/gwenview_importer.desktop
@@ -579,3 +585,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/16x16/actions/color.png
 %{_iconsdir}/hicolor/16x16/actions/gray-scale.png
 %{_datadir}/kde4/servicetypes/kipiplugin.desktop
+
+%files -n kio_msits
+%defattr(644,root,root,755)
+%{_libdir}/kde4/kio_msits.so
+%{_datadir}/kde4/services/msits.protocol
