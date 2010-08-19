@@ -1,338 +1,775 @@
-Index: libs/libksane/libksane/ksane_viewer.cpp
+Index: libs/libkexiv2/libkexiv2/kexiv2exif.cpp
 ===================================================================
---- libs/libksane/libksane/ksane_viewer.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ libs/libksane/libksane/ksane_viewer.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -244,8 +244,8 @@
+--- libs/libkexiv2/libkexiv2/kexiv2exif.cpp	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ libs/libkexiv2/libkexiv2/kexiv2exif.cpp	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -980,10 +980,33 @@
+ 
+ KExiv2::TagsMap KExiv2::getMakernoteTagsList() const
  {
-     if ((d->selection->rect().width() >0.001) &&
-         (d->selection->rect().height() > 0.001) &&
--        (d->pixmapItem->pixmap().width() - d->selection->rect().width() > 0.001) &&
--        (d->pixmapItem->pixmap().height() - d->selection->rect().height() > 0.001))
-+        ((d->pixmapItem->pixmap().width() - d->selection->rect().width() > 0.001) ||
-+        (d->pixmapItem->pixmap().height() - d->selection->rect().height() > 0.001)))
+-#if (EXIV2_TEST_VERSION(0,18,1))
+     try
      {
-         d->selection->setVisible(true);
+         QList<const Exiv2::TagInfo*> tags;
++
++#if (EXIV2_TEST_VERSION(0,21,0))
++
++        const Exiv2::GroupInfo* gi = Exiv2::ExifTags::groupList();
++
++        while (gi->ifdId_ != Exiv2::lastIfdId)
++        {
++            if (QString(gi->name_) == QString("Makernote"))
++            {
++                Exiv2::TagListFct tl     = gi->tagList_;
++                const Exiv2::TagInfo* ti = tl();
++
++                while (ti->tag_ != 0xFFFF)
++                {
++                    tags << ti;
++                    ++ti;
++                }
++            }
++            ++gi;
++        }
++
++#else
++
++#if (EXIV2_TEST_VERSION(0,18,1))
+         tags
+              // Canon Makernotes.
+              << Exiv2::CanonMakerNote::tagList()
+@@ -994,7 +1017,7 @@
+              << Exiv2::CanonMakerNote::tagListPi()
+ #if (EXIV2_TEST_VERSION(0,19,1))
+              << Exiv2::CanonMakerNote::tagListFi()
+-#endif
++#endif // (EXIV2_TEST_VERSION(0,19,1))
+              // Sigma Makernotes.
+              << Exiv2::SigmaMakerNote::tagList()
+              // Sony Makernotes.
+@@ -1002,7 +1025,7 @@
+ #if (EXIV2_TEST_VERSION(0,19,1))
+              << Exiv2::SonyMakerNote::tagListCs()
+              << Exiv2::SonyMakerNote::tagListCs2()
+-#endif
++#endif // (EXIV2_TEST_VERSION(0,19,1))
+              // Minolta Makernotes.
+              << Exiv2::MinoltaMakerNote::tagList()
+              << Exiv2::MinoltaMakerNote::tagListCsStd()
+@@ -1031,6 +1054,10 @@
+              // Fuji Makernotes.
+              << Exiv2::FujiMakerNote::tagList();
+ 
++#endif // (EXIV2_TEST_VERSION(0,18,1))
++
++#endif // (EXIV2_TEST_VERSION(0,21,0))
++
+         TagsMap tagsMap;
+         for (QList<const Exiv2::TagInfo*>::iterator it = tags.begin(); it != tags.end(); ++it)
+         {
+@@ -1050,7 +1077,6 @@
+     {
+         d->printExiv2ExceptionError("Cannot get Makernote Tags list using Exiv2 ", e);
      }
-Index: gwenview/app/kipiinterface.cpp
+-#endif
+ 
+     return TagsMap();
+ }
+Index: libs/libkexiv2/libkexiv2/kexiv2_p.cpp
 ===================================================================
---- gwenview/app/kipiinterface.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ gwenview/app/kipiinterface.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -352,8 +352,7 @@
- 
- 
- void KIPIInterface::slotDirectoryChanged() {
--// TODO check if getting it from selected
--	emit currentAlbumChanged(d->mMainWindow->contextManager()->selection().count() >0);
-+	emit currentAlbumChanged(true);
+--- libs/libkexiv2/libkexiv2/kexiv2_p.cpp	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ libs/libkexiv2/libkexiv2/kexiv2_p.cpp	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -33,7 +33,9 @@
+     imageComments.clear();
+     exifMetadata.clear();
+     iptcMetadata.clear();
++#ifdef _XMP_SUPPORT_
+     xmpMetadata.clear();
++#endif
  }
  
- } //namespace
-Index: gwenview/app/main.cpp
+ KExiv2Priv::KExiv2Priv()
+@@ -50,7 +52,7 @@
+ void KExiv2Priv::printExiv2ExceptionError(const QString& msg, Exiv2::Error& e)
+ {
+     std::string s(e.what());
+-    kDebug(51003) << msg.toAscii().constData() << " (Error #" 
++    kDebug(51003) << msg.toAscii().constData() << " (Error #"
+                   << e.code() << ": " << s.c_str() << endl;
+ }
+ 
+Index: libs/libkexiv2/libkexiv2/kexiv2_p.h
 ===================================================================
---- gwenview/app/main.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ gwenview/app/main.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -39,7 +39,7 @@
- 		"gwenview",        /* appname */
- 		0,                 /* catalogName */
- 		ki18n("Gwenview"), /* programName */
--		"2.3.0");          /* version */
-+		"2.3.1");          /* version */
- 	aboutData.setShortDescription(ki18n("An Image Viewer"));
- 	aboutData.setLicense(KAboutData::License_GPL);
- 	aboutData.setCopyrightStatement(ki18n("Copyright 2000-2009 Aurélien Gâteau"));
-Index: gwenview/part/gvpart.cpp
-===================================================================
---- gwenview/part/gvpart.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ gwenview/part/gvpart.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -116,7 +116,7 @@
- 		"gvpart",                /* appname */
- 		"gwenview",              /* catalogName */
- 		ki18n("Gwenview KPart"), /* programName */
--		"2.1");                  /* version */
-+		"2.3.1");                /* version */
- 	aboutData->setShortDescription(ki18n("An Image Viewer"));
- 	aboutData->setLicense(KAboutData::License_GPL);
- 	aboutData->setCopyrightStatement(ki18n("Copyright 2000-2008 Aurélien Gâteau"));
-Index: gwenview/NEWS
-===================================================================
---- gwenview/NEWS	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ gwenview/NEWS	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -1,3 +1,7 @@
-+# 2.3.1
-+## Fixes
-+- Ensure "Advanced Slideshow" plugin is always enabled.
+--- libs/libkexiv2/libkexiv2/kexiv2_p.h	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ libs/libkexiv2/libkexiv2/kexiv2_p.h	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -26,7 +26,7 @@
+ 
+ #include "kexiv2.h"
+ 
+- // C++ includes.
++ // C++ includes
+ 
+ #include <cstdlib>
+ #include <cstdio>
+@@ -37,7 +37,7 @@
+ #include <iomanip>
+ #include <string>
+ 
+-// Qt includes.
++// Qt includes
+ 
+ #include <QBuffer>
+ #include <QFile>
+@@ -49,7 +49,7 @@
+ #include <QDataStream>
+ #include <QSharedData>
+ 
+-// KDE includes.
++// KDE includes
+ 
+ #include <ktemporaryfile.h>
+ #include <kencodingdetector.h>
+@@ -57,14 +57,19 @@
+ #include <kdeversion.h>
+ #include <kdebug.h>
+ 
+-// Exiv2 includes.
++// Exiv2 includes -------------------------------------------------------
+ 
++// NOTE: All Exiv2 header must be stay there to not expose external source code to Exiv2 API
++//       and reduce Exiv2 dependency to client code.
 +
- # 2.3.0
- ## New features
- - Gwenview can now play videos (bug #174522).
-Index: thumbnailers/mobi/mobithumbnail.desktop
+ // The pragmas are required to be able to catch exceptions thrown by libexiv2:
+ // See http://gcc.gnu.org/wiki/Visibility, the section about c++ exceptions.
+ // They are needed for all libexiv2 versions that do not care about visibility.
+ #ifdef __GNUC__
+ #pragma GCC visibility push(default)
+ #endif
++
++#include <exiv2/exv_conf.h>
+ #include <exiv2/error.hpp>
+ #include <exiv2/image.hpp>
+ #include <exiv2/jpgimage.hpp>
+@@ -74,25 +79,11 @@
+ #include <exiv2/properties.hpp>
+ #include <exiv2/types.hpp>
+ #include <exiv2/exif.hpp>
+-#include <exiv2/canonmn.hpp>
+-#include <exiv2/sigmamn.hpp>
+-#include <exiv2/sonymn.hpp>
+-#include <exiv2/minoltamn.hpp>
+-#include <exiv2/nikonmn.hpp>
+-#include <exiv2/olympusmn.hpp>
+-#include <exiv2/panasonicmn.hpp>
+-#include <exiv2/pentaxmn.hpp>
+-#include <exiv2/fujimn.hpp>
+-//#include <exiv2/preview.hpp>
+-#ifdef __GNUC__
+-#pragma GCC visibility pop
+-#endif
++#include <exiv2/xmpsidecar.hpp>
+ 
+ // Check if Exiv2 support XMP
+ 
+-#if (EXIV2_MAJOR_VERSION ==0 && EXIV2_MINOR_VERSION ==15 && EXIV2_PATCH_VERSION >=99) || \
+-    (EXIV2_MAJOR_VERSION ==0 && EXIV2_MINOR_VERSION >15 ) || \
+-    (EXIV2_MAJOR_VERSION >0)
++#ifdef EXV_HAVE_XMP_TOOLKIT
+ #   define _XMP_SUPPORT_ 1
+ #endif
+ 
+@@ -107,16 +98,29 @@
+ #    define EXIV2_TEST_VERSION(major,minor,patch) (false)
+ #endif
+ 
+-#ifndef _XMP_SUPPORT_
++#if (EXIV2_TEST_VERSION(0,21,0))
+ 
+-// Dummy redifinition of XmpData class to compile fine 
+-// if XMP metadata support is not available from Exiv2
+-namespace Exiv2
+-{
+-    class XmpData{};
+-}
+-#endif // _XMP_SUPPORT_
++// With exiv2 > 0.20.0, all makernote header files have been removed to increase binary compatibility.
++// See Exiv2 bugzilla entry http://dev.exiv2.org/issues/719
++// and wiki topic           http://dev.exiv2.org/boards/3/topics/583
++#else
++#include <exiv2/canonmn.hpp>
++#include <exiv2/sigmamn.hpp>
++#include <exiv2/sonymn.hpp>
++#include <exiv2/minoltamn.hpp>
++#include <exiv2/nikonmn.hpp>
++#include <exiv2/olympusmn.hpp>
++#include <exiv2/panasonicmn.hpp>
++#include <exiv2/pentaxmn.hpp>
++#include <exiv2/fujimn.hpp>
++#endif
+ 
++#ifdef __GNUC__
++#pragma GCC visibility pop
++#endif
++
++// End of Exiv2 headers ------------------------------------------------------
++
+ namespace KExiv2Iface
+ {
+ 
+@@ -163,14 +167,20 @@
+ 
+     const Exiv2::ExifData& exifMetadata() const { return data.constData()->exifMetadata;  }
+     const Exiv2::IptcData& iptcMetadata() const { return data.constData()->iptcMetadata;  }
+-    const Exiv2::XmpData&  xmpMetadata()  const { return data.constData()->xmpMetadata;   }
+     const std::string& imageComments()    const { return data.constData()->imageComments; }
+ 
++#ifdef _XMP_SUPPORT_
++    const Exiv2::XmpData&  xmpMetadata()  const { return data.constData()->xmpMetadata;   }
++#endif
++
+     Exiv2::ExifData& exifMetadata() { return data.data()->exifMetadata;  }
+     Exiv2::IptcData& iptcMetadata() { return data.data()->iptcMetadata;  }
+-    Exiv2::XmpData&  xmpMetadata()  { return data.data()->xmpMetadata;   }
+     std::string& imageComments()    { return data.data()->imageComments; }
+ 
++#ifdef _XMP_SUPPORT_
++    Exiv2::XmpData&  xmpMetadata()  { return data.data()->xmpMetadata;   }
++#endif
++
+ public:
+ 
+     bool                               writeRawFiles;
+Index: libs/libkexiv2/libkexiv2/kexiv2xmp.cpp
 ===================================================================
---- thumbnailers/mobi/mobithumbnail.desktop	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ thumbnailers/mobi/mobithumbnail.desktop	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -4,7 +4,7 @@
- Name[ar]=مولد مصغرات Mobipocket
- Name[ca]=Miniaturitzador de Mobipocket
- Name[da]=Mobipocket-miniaturer
--Name[de]=M
-+Name[de]=Mobipocket-Minibild
- Name[el]=Δημιουργία εικόνων επισκόπησης Mobipocket
- Name[es]=Generador de miniaturas Mobipocket
- Name[et]=Mobipocketi pisipildid
-@@ -25,7 +25,7 @@
- Name[pa]=ਮੋਬਾਪਾਕਟ ਥੰਮਨੇਲਰ
- Name[pt]=Miniaturas para o Mobipocket
- Name[pt_BR]=Miniatura do Mobipocket
--Name[ru]=Создание эскизов Mobipocket
-+Name[ru]=Создание миниатюр Mobipocket
- Name[sl]=Ustvarjalnik sličic za Mobipocket
- Name[sr]=Генератор сличица за Мобипокет
- Name[sr@latin]=Generator sličica za Mobipocket
+--- libs/libkexiv2/libkexiv2/kexiv2xmp.cpp	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ libs/libkexiv2/libkexiv2/kexiv2xmp.cpp	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -44,7 +44,7 @@
+     catch( Exiv2::Error& e )
+     {
+         std::string s(e.what());
+-        kDebug(51003) << "Cannot check Xmp access mode using Exiv2 (Error #" 
++        kDebug(51003) << "Cannot check Xmp access mode using Exiv2 (Error #"
+                       << e.code() << ": " << s.c_str() << ")" << endl;
+     }
+ 
+@@ -52,9 +52,11 @@
+ 
+ #else
+ 
+-    return false;
++    Q_UNUSED(filePath);
+ 
+ #endif // _XMP_SUPPORT_
++
++    return false;
+ }
+ 
+ bool KExiv2::hasXmp() const
+@@ -142,6 +144,10 @@
+         d->printExiv2ExceptionError("Cannot set Xmp data using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(data);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return false;
+@@ -229,6 +235,11 @@
+         d->printExiv2ExceptionError("Cannot parse Xmp metadata using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpKeysFilter);
++    Q_UNUSED(invertSelection);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return MetaDataMap();
+@@ -238,17 +249,21 @@
+ {
+ #ifdef _XMP_SUPPORT_
+ 
+-    try 
++    try
+     {
+         std::string xmpkey(xmpTagName);
+         Exiv2::XmpKey xk(xmpkey);
+         return QString::fromLocal8Bit( Exiv2::XmpProperties::propertyTitle(xk) );
+     }
+-    catch (Exiv2::Error& e) 
++    catch (Exiv2::Error& e)
+     {
+         d->printExiv2ExceptionError("Cannot get Xmp metadata tag title using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return QString();
+@@ -257,16 +272,22 @@
+ QString KExiv2::getXmpTagDescription(const char* xmpTagName)
+ {
+ #ifdef _XMP_SUPPORT_
+-    try 
++
++    try
+     {
+         std::string xmpkey(xmpTagName);
+         Exiv2::XmpKey xk(xmpkey);
+         return QString::fromLocal8Bit( Exiv2::XmpProperties::propertyDesc(xk) );
+     }
+-    catch (Exiv2::Error& e) 
++    catch (Exiv2::Error& e)
+     {
+         d->printExiv2ExceptionError("Cannot get Xmp metadata tag description using Exiv2 ", e);
+     }
++
++#else
++
++    Q_UNUSED(xmpTagName);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return QString();
+@@ -299,6 +320,11 @@
+                                     .arg(xmpTagName), e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(escapeCR);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return QString();
+@@ -325,6 +351,12 @@
+         d->printExiv2ExceptionError("Cannot set Xmp tag string into image using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(value);
++    Q_UNUSED(setProgramName);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return false;
+@@ -345,8 +377,8 @@
+                 AltLangMap map;
+                 const Exiv2::LangAltValue &value = static_cast<const Exiv2::LangAltValue &>(it->value());
+ 
+-                for (Exiv2::LangAltValue::ValueType::const_iterator it2 = value.value_.begin(); 
+-                     it2 != value.value_.end(); ++it2) 
++                for (Exiv2::LangAltValue::ValueType::const_iterator it2 = value.value_.begin();
++                     it2 != value.value_.end(); ++it2)
+                 {
+                     QString lang = QString::fromUtf8(it2->first.c_str());
+                     QString text = QString::fromUtf8(it2->second.c_str());
+@@ -366,12 +398,17 @@
+                                     .arg(xmpTagName), e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(escapeCR);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return AltLangMap();
+ }
+ 
+-bool KExiv2::setXmpTagStringListLangAlt(const char* xmpTagName, const KExiv2::AltLangMap& values, 
++bool KExiv2::setXmpTagStringListLangAlt(const char* xmpTagName, const KExiv2::AltLangMap& values,
+                                         bool setProgramName) const
+ {
+ #ifdef _XMP_SUPPORT_
+@@ -407,6 +444,12 @@
+         d->printExiv2ExceptionError("Cannot set Xmp tag string lang-alt into image using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(values);
++    Q_UNUSED(setProgramName);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return false;
+@@ -448,12 +491,18 @@
+                                     .arg(xmpTagName), e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(langAlt);
++    Q_UNUSED(escapeCR);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return QString();
+ }
+ 
+-bool KExiv2::setXmpTagStringLangAlt(const char* xmpTagName, const QString& value, 
++bool KExiv2::setXmpTagStringLangAlt(const char* xmpTagName, const QString& value,
+                                     const QString& langAlt, bool setProgramName) const
+ {
+ #ifdef _XMP_SUPPORT_
+@@ -465,7 +514,7 @@
+     {
+         QString language("x-default"); // default alternative language.
+ 
+-        if (!langAlt.isEmpty()) 
++        if (!langAlt.isEmpty())
+             language = langAlt;
+ 
+         QString txtLangAlt = QString("lang=%1 %2").arg(language).arg(value);
+@@ -499,6 +548,13 @@
+         d->printExiv2ExceptionError("Cannot set Xmp tag string lang-alt into image using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(value);
++    Q_UNUSED(langAlt);
++    Q_UNUSED(setProgramName);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return false;
+@@ -542,6 +598,11 @@
+                                     .arg(xmpTagName), e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(escapeCR);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return QStringList();
+@@ -580,6 +641,12 @@
+         d->printExiv2ExceptionError("Cannot set Xmp tag string Seq into image using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(seq);
++    Q_UNUSED(setProgramName);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return false;
+@@ -622,6 +689,11 @@
+                                     .arg(xmpTagName), e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(escapeCR);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return QStringList();
+@@ -660,6 +732,12 @@
+         d->printExiv2ExceptionError("Cannot set Xmp tag string Bag into image using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(bag);
++    Q_UNUSED(setProgramName);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return false;
+@@ -668,8 +746,6 @@
+ bool KExiv2::addToXmpTagStringBag(const char* xmpTagName, const QStringList& entriesToAdd,
+                                      bool setProgramName) const
+ {
+-//#ifdef _XMP_SUPPORT_
+-
+     if (!setProgramId(setProgramName))
+         return false;
+ 
+@@ -686,16 +762,12 @@
+     if (setXmpTagStringBag(xmpTagName, newEntries, false))
+         return true;
+ 
+-//#endif // _XMP_SUPPORT_
+-
+     return false;
+ }
+ 
+ bool KExiv2::removeFromXmpTagStringBag(const char* xmpTagName, const QStringList& entriesToRemove,
+                                        bool setProgramName) const
+ {
+-//#ifdef _XMP_SUPPORT_
+-
+     if (!setProgramId(setProgramName))
+         return false;
+ 
+@@ -712,8 +784,6 @@
+     if (setXmpTagStringBag(xmpTagName, newEntries, false))
+         return true;
+ 
+-//#endif // _XMP_SUPPORT_
+-
+     return false;
+ }
+ 
+@@ -801,7 +871,7 @@
+                     QMap<QString, QVariant> map;
+                     // access the ValueType std::map< std::string, std::string>
+                     Exiv2::LangAltValue::ValueType::const_iterator i;
+-                    for (i = value.value_.begin(); i != value.value_.end(); ++i) 
++                    for (i = value.value_.begin(); i != value.value_.end(); ++i)
+                     {
+                         map[QString::fromUtf8(i->first.c_str())] = QString::fromUtf8(i->second.c_str());
+                     }
+@@ -818,6 +888,12 @@
+                                     .arg(xmpTagName), e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(rationalAsListOfInts);
++    Q_UNUSED(stringEscapeCR);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return QVariant();
+@@ -839,6 +915,11 @@
+         KExiv2Priv::printExiv2ExceptionError("Cannot register a new Xmp namespace using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(uri);
++    Q_UNUSED(prefix);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return false;
+@@ -860,6 +941,10 @@
+         KExiv2Priv::printExiv2ExceptionError("Cannot unregister a new Xmp namespace using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(uri);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return false;
+@@ -887,6 +972,11 @@
+         d->printExiv2ExceptionError("Cannot remove Xmp tag using Exiv2 ", e);
+     }
+ 
++#else
++
++    Q_UNUSED(xmpTagName);
++    Q_UNUSED(setProgramName);
++
+ #endif // _XMP_SUPPORT_
+ 
+     return false;
 Index: okular/core/document.cpp
 ===================================================================
---- okular/core/document.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ okular/core/document.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -113,6 +113,7 @@
-     Qt::CaseSensitivity cachedCaseSensitivity;
-     bool cachedViewportMove : 1;
-     bool cachedNoDialogs : 1;
-+    bool isCurrentlySearching : 1;
-     QColor cachedColor;
- };
+--- okular/core/document.cpp	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ okular/core/document.cpp	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -3370,6 +3370,11 @@
+     if ( docFileName == QLatin1String( "-" ) )
+         return false;
  
-@@ -1008,6 +1009,10 @@
-     {
-         // if the user cancelled but he just got a match, give him the match!
-         QApplication::restoreOverrideCursor();
++    QString docPath = d->m_docFileName;
++    const QFileInfo fi( docPath );
++    if ( fi.isSymLink() )
++        docPath = fi.symLinkTarget();
 +
-+        RunningSearch * s = m_searches[searchID];
-+        s->isCurrentlySearching = false;
+     KZip okularArchive( fileName );
+     if ( !okularArchive.open( QIODevice::WriteOnly ) )
+         return false;
+@@ -3407,7 +3412,7 @@
+     okularArchive.writeFile( "content.xml", user.loginName(), userGroup.name(),
+                              contentDocXml.constData(), contentDocXml.length() );
+ 
+-    okularArchive.addLocalFile( d->m_docFileName, docFileName );
++    okularArchive.addLocalFile( docPath, docFileName );
+     okularArchive.addLocalFile( metadataFile.fileName(), "metadata.xml" );
+ 
+     if ( !okularArchive.close() )
+Index: okular/core/document.h
+===================================================================
+--- okular/core/document.h	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ okular/core/document.h	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -791,7 +791,7 @@
+ 
+         /**
+          * If 'rePos.enabled == true' then this structure contains the
+-         * viewport center.
++         * viewport center or top left depending on the value of pos.
+          */
+         struct {
+             bool enabled;
+
+Zmiany atrybutów dla: okular/generators/mobipocket/okularApplication_mobi.desktop
+___________________________________________________________________
+Usunięte: svn:mergeinfo
+
+
+Zmiany atrybutów dla: okular/generators/mobipocket/generator_mobi.h
+___________________________________________________________________
+Usunięte: svn:mergeinfo
+
+
+Zmiany atrybutów dla: okular/generators/mobipocket/mobidocument.cpp
+___________________________________________________________________
+Usunięte: svn:mergeinfo
+
+
+Zmiany atrybutów dla: okular/generators/mobipocket/converter.cpp
+___________________________________________________________________
+Usunięte: svn:mergeinfo
+
+
+Zmiany atrybutów dla: okular/generators/mobipocket/libokularGenerator_mobi.desktop
+___________________________________________________________________
+Usunięte: svn:mergeinfo
+
+
+Zmiany atrybutów dla: okular/generators/mobipocket/mobidocument.h
+___________________________________________________________________
+Usunięte: svn:mergeinfo
+
+
+Zmiany atrybutów dla: okular/generators/mobipocket/okularMobi.desktop
+___________________________________________________________________
+Usunięte: svn:mergeinfo
+
+
+Zmiany atrybutów dla: okular/generators/mobipocket/converter.h
+___________________________________________________________________
+Usunięte: svn:mergeinfo
+
+
+Zmiany atrybutów dla: okular/generators/mobipocket/generator_mobi.cpp
+___________________________________________________________________
+Usunięte: svn:mergeinfo
+
+
+Zmiany atrybutów dla: okular/generators/mobipocket
+___________________________________________________________________
+Usunięte: svn:mergeinfo
+
+Index: okular/generators/comicbook/unrar.cpp
+===================================================================
+--- okular/generators/comicbook/unrar.cpp	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ okular/generators/comicbook/unrar.cpp	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -232,7 +232,7 @@
+     mProcess->start();
+     QEventLoop loop;
+     mLoop = &loop;
+-    ret = loop.exec( QEventLoop::WaitForMoreEvents );
++    ret = loop.exec( QEventLoop::WaitForMoreEvents | QEventLoop::ExcludeUserInputEvents );
+     mLoop = 0;
+ #endif
+ 
+Index: okular/generators/fax/faxexpand.h
+===================================================================
+--- okular/generators/fax/faxexpand.h	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ okular/generators/fax/faxexpand.h	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -59,6 +59,7 @@
+     int stripnum;		/* current strip while expanding */
+     struct strip *strips;	/* array of strips containing fax data in file */
+     t16bits *data;		/* in-memory copy of strip */
++    t16bits *dataOrig;		/* copy of `data', in case we shift it */
+     size_t length;		/* length of data */
+     QSize size;			/* width & height of page in pixels */
+     int inverse;		/* black <=> white */
+Index: okular/generators/fax/faxdocument.cpp
+===================================================================
+--- okular/generators/fax/faxdocument.cpp	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ okular/generators/fax/faxdocument.cpp	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -136,6 +136,8 @@
+     if ( pn->strips == 0 )
+         pn->rowsperstrip = pn->size.height();
+ 
++    pn->dataOrig = (t16bits *)data;
 +
-         emit m_parent->searchFinished( searchID, Document::SearchCancelled );
-         delete pagesToNotify;
-         return;
-@@ -1058,11 +1063,13 @@
- 
-     bool foundAMatch = false;
- 
-+    RunningSearch * s = m_searches[searchID];
-+    s->isCurrentlySearching = false;
-+
-     // if a match has been found..
-     if ( match )
-     {
-         // update the RunningSearch structure adding this match..
--        RunningSearch * s = m_searches[searchID];
-         foundAMatch = true;
-         s->continueOnPage = currentPage;
-         s->continueOnMatch = *match;
-@@ -1110,6 +1117,10 @@
-     {
-         // if the user cancelled but he just got a match, give him the match!
-         QApplication::restoreOverrideCursor();
-+
-+        RunningSearch * s = m_searches[searchID];
-+        s->isCurrentlySearching = false;
-+
-         emit m_parent->searchFinished( searchID, Document::SearchCancelled );
-         delete pagesToNotify;
-         return;
-@@ -1159,13 +1170,15 @@
-     // reset cursor to previous shape
-     QApplication::restoreOverrideCursor();
- 
-+    RunningSearch * s = m_searches[searchID];
-+    s->isCurrentlySearching = false;
-+
-     bool foundAMatch = false;
- 
-     // if a match has been found..
-     if ( match )
-     {
-         // update the RunningSearch structure adding this match..
--        RunningSearch * s = m_searches[searchID];
-         foundAMatch = true;
-         s->continueOnPage = currentPage;
-         s->continueOnMatch = *match;
-@@ -1214,6 +1227,10 @@
-         typedef QVector<RegularAreaRect *> MatchesVector;
- 
-         QApplication::restoreOverrideCursor();
-+
-+        RunningSearch * s = m_searches[searchID];
-+        s->isCurrentlySearching = false;
-+
-         emit m_parent->searchFinished( searchID, Document::SearchCancelled );
-         foreach(const MatchesVector &mv, *pageMatches) qDeleteAll(mv);
-         delete pageMatches;
-@@ -1256,6 +1273,7 @@
-         QApplication::restoreOverrideCursor();
- 
-         RunningSearch * s = m_searches[searchID];
-+        s->isCurrentlySearching = false;
-         bool foundAMatch = pageMatches->count() != 0;
-         QMap< Page *, QVector<RegularAreaRect *> >::const_iterator it, itEnd;
-         it = pageMatches->constBegin();
-@@ -1299,6 +1317,10 @@
-         typedef QVector<MatchColor> MatchesVector;
- 
-         QApplication::restoreOverrideCursor();
-+
-+        RunningSearch * s = m_searches[searchID];
-+        s->isCurrentlySearching = false;
-+
-         emit m_parent->searchFinished( searchID, Document::SearchCancelled );
- 
-         foreach(const MatchesVector &mv, *pageMatches)
-@@ -1372,6 +1394,7 @@
-         QApplication::restoreOverrideCursor();
- 
-         RunningSearch * s = m_searches[searchID];
-+        s->isCurrentlySearching = false;
-         bool foundAMatch = pageMatches->count() != 0;
-         QMap< Page *, QVector<MatchColor> >::const_iterator it, itEnd;
-         it = pageMatches->constBegin();
-@@ -2547,6 +2570,7 @@
-     s->cachedViewportMove = moveViewport;
-     s->cachedNoDialogs = noDialogs;
-     s->cachedColor = color;
-+    s->isCurrentlySearching = true;
- 
-     // global data for search
-     QSet< int > *pagesToNotify = new QSet< int >;
-@@ -2645,9 +2669,10 @@
- 
-     // start search with cached parameters from last search by searchID
-     RunningSearch * p = *it;
--    searchText( searchID, p->cachedString, false, p->cachedCaseSensitivity,
--                p->cachedType, p->cachedViewportMove, p->cachedColor,
--                p->cachedNoDialogs );
-+    if ( !p->isCurrentlySearching )
-+        searchText( searchID, p->cachedString, false, p->cachedCaseSensitivity,
-+                    p->cachedType, p->cachedViewportMove, p->cachedColor,
-+                    p->cachedNoDialogs );
+     return data;
  }
  
- void Document::continueSearch( int searchID, SearchType type )
-@@ -2662,9 +2687,10 @@
+@@ -241,6 +243,7 @@
+     d->mPageNode.vres = 1;
+     d->mPageNode.inverse = 0;
+     d->mPageNode.data = 0;
++    d->mPageNode.dataOrig = 0;
+     d->mPageNode.imageData = 0;
+     d->mType = type;
  
-     // start search with cached parameters from last search by searchID
-     RunningSearch * p = *it;
--    searchText( searchID, p->cachedString, false, p->cachedCaseSensitivity,
--                type, p->cachedViewportMove, p->cachedColor,
--                p->cachedNoDialogs );
-+    if ( !p->isCurrentlySearching )
-+        searchText( searchID, p->cachedString, false, p->cachedCaseSensitivity,
-+                    type, p->cachedViewportMove, p->cachedColor,
-+                    p->cachedNoDialogs );
+@@ -252,7 +255,7 @@
+ 
+ FaxDocument::~FaxDocument()
+ {
+-    delete [] d->mPageNode.data;
++    delete [] d->mPageNode.dataOrig;
+     delete [] d->mPageNode.imageData;
+     delete d;
  }
+Index: okular/ui/pageview.cpp
+===================================================================
+--- okular/ui/pageview.cpp	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ okular/ui/pageview.cpp	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -1427,7 +1427,13 @@
+         int deltaY = d->mouseMidLastY - mouseY;
  
- void Document::resetSearch( int searchID )
-Index: okular/generators/dvi/psgs.cpp
-===================================================================
---- okular/generators/dvi/psgs.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ okular/generators/dvi/psgs.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -215,6 +215,7 @@
-   // Step 2: Call GS with the File
-   QFile::remove(filename.toAscii());
-   KProcess proc;
-+  proc.setOutputChannelMode(KProcess::SeparateChannels);
-   QStringList argus;
-   argus << "gs";
-   argus << "-dSAFER" << "-dPARANOIDSAFER" << "-dDELAYSAFER" << "-dNOPAUSE" << "-dBATCH";
-@@ -259,6 +260,7 @@
- 	gsDevice = knownDevices.begin();
- 	if (knownDevices.isEmpty())
- 	  // TODO: show a requestor of some sort.
-+#if 0
- 	  KMessageBox::detailedError(0, 
- 				     i18n("<qt>The version of Ghostview that is installed on this computer does not contain "
- 					  "any of the Ghostview device drivers that are known to Okular. PostScript "
-@@ -279,6 +281,9 @@
- 					  "Ghostview. Among others, Okular can use the 'png256', 'jpeg' and 'pnm' "
- 					  "drivers. Note that Okular needs to be restarted to re-enable PostScript support."
- 					  "</p></qt>"));
-+#else
-+	{}
-+#endif
- 	else {
- 	  kDebug(kvs::dvi) << QString("Okular will now try to use the '%1' device driver.").arg(*gsDevice);
- 	  gs_generate_graphics_file(page, filename, magnification);
-Index: okular/generators/tiff/libokularGenerator_tiff.desktop
-===================================================================
---- okular/generators/tiff/libokularGenerator_tiff.desktop	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ okular/generators/tiff/libokularGenerator_tiff.desktop	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -15,6 +15,7 @@
- Name[ga]=Leabharlann TIFF Okular
- Name[gl]=Biblioteca TIFF de Okular
- Name[hne]=ओकुलर टिफ लाइब्रेरी
-+Name[hr]=TIFF biblioteka za Okular
- Name[hu]=Okular TIFF-kezelő programkönyvtár
- Name[is]=Okular TIFF skráasafn
- Name[it]=Libreria TIFF di Okular
-Index: okular/generators/comicbook/libokularGenerator_comicbook.desktop
-===================================================================
---- okular/generators/comicbook/libokularGenerator_comicbook.desktop	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ okular/generators/comicbook/libokularGenerator_comicbook.desktop	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -13,6 +13,7 @@
- Name[gl]=Libro de Cómic
- Name[hi]=कॉमिक पुस्तिका
- Name[hne]=कामिक पुस्तिका
-+Name[hr]=Strip
- Name[hu]=Képregénynézegető
- Name[km]=សៀវភៅ​កំប្លែង
- Name[ko]=만화책
-Index: kolourpaint/document/kpDocument_Open.cpp
-===================================================================
---- kolourpaint/document/kpDocument_Open.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ kolourpaint/document/kpDocument_Open.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -217,6 +217,13 @@
-             detectedMimeTypePtr != KMimeType::defaultMimeTypePtr ())
+         // wrap mouse from top to bottom
+-        QRect mouseContainer = KGlobalSettings::desktopGeometry( this );
++        const QRect mouseContainer = KGlobalSettings::desktopGeometry( this );
++        const int absDeltaY = abs(deltaY);
++        if ( absDeltaY > mouseContainer.height() / 2 )
++        {
++            deltaY = mouseContainer.height() - absDeltaY;
++        }
++        
+         if ( mouseY <= mouseContainer.top() + 4 &&
+              d->zoomFactor < 3.99 )
          {
-             detectedMimeType = detectedMimeTypePtr->name ();
-+        } else {
-+            detectedMimeTypePtr = KMimeType::findByPath (tempFile);
-+            if(detectedMimeTypePtr &&
-+                detectedMimeTypePtr != KMimeType::defaultMimeTypePtr ())
-+            {
-+                detectedMimeType = detectedMimeTypePtr->name ();
-+            }
-         }
- 
-         if (saveOptions)
-Index: ksnapshot/regiongrabber.cpp
+Index: okular/ui/annotationtools.h
 ===================================================================
---- ksnapshot/regiongrabber.cpp	(.../tags/KDE/4.3.0/kdegraphics)	(wersja 1013435)
-+++ ksnapshot/regiongrabber.cpp	(.../branches/KDE/4.3/kdegraphics)	(wersja 1013435)
-@@ -28,7 +28,8 @@
- #include <KWindowSystem>
- 
- RegionGrabber::RegionGrabber( ) :
--    QWidget( 0 ), selection(), mouseDown( false ), newSelection( false ),
-+    QWidget( 0, Qt::X11BypassWindowManagerHint | Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::Tool ),
-+    selection(), mouseDown( false ), newSelection( false ),
-     handleSize( 10 ), mouseOverHandle( 0 ),
-     showHelp( true ), grabbing( false ),
-     TLHandle(0,0,handleSize,handleSize), TRHandle(0,0,handleSize,handleSize),
-@@ -39,7 +40,6 @@
-     handles << &TLHandle << &TRHandle << &BLHandle << &BRHandle
-             << &LHandle << &THandle << &RHandle << &BHandle;
-     setMouseTracking( true );
--    setWindowFlags( Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint );
-     int timeout = KWindowSystem::compositingActive() ? 200 : 50;
-     QTimer::singleShot( timeout, this, SLOT(init()) );
- }
-@@ -54,8 +54,9 @@
-     resize( pixmap.size() );
-     move( 0, 0 );
-     setCursor( Qt::CrossCursor );
--    showFullScreen();
--    KWindowSystem::forceActiveWindow( winId() );
-+    show();
-+    grabMouse();
-+    grabKeyboard();
+--- okular/ui/annotationtools.h	(.../tags/KDE/4.5.0/kdegraphics)	(wersja 1165576)
++++ okular/ui/annotationtools.h	(.../branches/KDE/4.5/kdegraphics)	(wersja 1165576)
+@@ -24,7 +24,7 @@
  }
  
- void RegionGrabber::paintEvent( QPaintEvent* e )
+ /**
+- * @short Engine: filter events to distill Annotation's.
++ * @short Engine: filter events to distill Annotations.
+  */
+ class AnnotatorEngine
+ {
+
+Zmiany atrybutów dla: okular
+___________________________________________________________________
+Dodane: svn:mergeinfo
+   Połączono zmiany /trunk/KDE/kdegraphics/okular:r1160615,1161849,1161859
+
 
 Zmiany atrybutów dla: .
 ___________________________________________________________________
