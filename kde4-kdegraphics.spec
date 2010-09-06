@@ -4,9 +4,9 @@
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
-Summary(es.UTF-8):	K Desktop Environment - aplicaciones gráficas
+Summary(es.UTF-8):	K Desktop Environment - aplicaciones gr¨¢ficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
-Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
+Summary(pt_BR.UTF-8):	K Desktop Environment - Aplica0Š40‹1es gr¨¢ficas
 Name:		kde4-kdegraphics
 Version:	4.5.1
 Release:	3
@@ -70,7 +70,7 @@ Included with this package are:
 - gwenview - an image viewer
 
 %description -l es.UTF-8
-Aplicaciones gráficas para KDE.
+Aplicaciones gr¨¢ficas para KDE.
 
 Incluidos en este paquete:
 - Kamera
@@ -83,29 +83,29 @@ Incluidos en este paquete:
 - KSnapshot
 - svgpart
 - oKular
-- gwenview - visualiza numerosos formatos de archivos gráficos
+- gwenview - visualiza numerosos formatos de archivos gr¨¢ficos
 
 %description -l pl.UTF-8
 Aplikacje graficzne dla KDE.
 
 Pakiet zawiera programy:
 
-- Kamera - obs¿uga kamer cyfrowych
-- KColorChooser - wybór koloru
+- Kamera - obs0’0uga kamer cyfrowych
+- KColorChooser - wyb¨®r koloru
 - KFile
 - KGamma
 - KolourPaint - prosty program do grafiki rastrowej
 - KRuler - linijka ekranowa
-- KSane - narz¿dzie do skanowania
-- KSnapshot - program do przechwytywania wygl¿du ekranu
+- KSANE - narz0Ž1dzie do skanowania
+- KSnapshot - program do przechwytywania wygl0Œ2du ekranu
 - svgpart
 - oKular
-- gwenview - przegl¿darka plików graficznych
+- gwenview - przegl0Œ2darka plik¨®w graficznych
 
 %description -l pt_BR.UTF-8
-Aplicações gráficas para o KDE.
+Aplica0Š40‹1es gr¨¢ficas para o KDE.
 
-Incluídos neste pacote:
+Inclu¨ªdos neste pacote:
 - Kamera
 - KColorChooser
 - KFile
@@ -116,12 +116,12 @@ Incluídos neste pacote:
 - KSnapshot
 - svgpart
 - oKular
-- gwenview - visualiza numerosos formatos de arquivos gráficos
+- gwenview - visualiza numerosos formatos de arquivos gr¨¢ficos
 
 %package devel
 Summary:	kdegraphics development files
 Summary(pl.UTF-8):	Pliki dla programist¨®w kdegraphics
-Summary(pt_BR.UTF-8):	Arquivos de inclusão para compilação de aplicações com kdegraphics
+Summary(pt_BR.UTF-8):	Arquivos de inclus0Š0o para compila0Š40Š0o de aplica0Š40‹1es com kdegraphics
 Group:		X11/Development/Libraries
 Requires:	%{name}-gwenview = %{version}-%{release}
 Requires:	%{name}-kolourpaint = %{version}-%{release}
@@ -139,12 +139,12 @@ kdegraphics development files.
 Pliki dla programist¨®w kdegraphics.
 
 %description devel -l pt_BR.UTF-8
-Arquivos de inclusão para compilação de aplicações que usem as
+Arquivos de inclus0Š0o para compila0Š40Š0o de aplica0Š40‹1es que usem as
 bibliotecas do kdegraphics.
 
 %package kamera
 Summary:	Digital camera support
-Summary(pl.UTF-8):	Obs¿uga kamer cyfrowych
+Summary(pl.UTF-8):	Obs0’0uga kamer cyfrowych
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdebase >= %{version}
 
@@ -157,16 +157,16 @@ configure your camera model and port type from a list in KControl,
 then start accessing the camera contents with a kamera:/ URL.
 
 %description kamera -l pl.UTF-8
-kamera to modu¿ IO slave oraz panelu KControl umo¿liwiaj¿cy dost¿p do
-folderów i zdj¿¿ w dowolnym aparacie cyfrowym obs¿ugiwanym przez
-biblioteki gPhoto2. Je¿li mamy obs¿ugiwany aparat, mo¿na zacz¿¿ u¿ywa¿
-go w wi¿kszo¿ci aplikacji KDE w dwóch krokach: wybra¿ model i port
-aparatu z listy w KControl, a nast¿pnie odwo¿ywa¿ si¿ do zawarto¿ci
-aparatu przez URL kamera:/.
+kamera to modu0’0 IO slave oraz panelu KControl umo0—4liwiaj0Œ2cy dost0Ž1p
+do folder¨®w i zdj0Ž10Œ4 w dowolnym aparacie cyfrowym obs0’0ugiwanym
+przez biblioteki gPhoto2. Je0”2li mamy obs0’0ugiwany aparat, mo0—4na
+zacz0Œ20Œ4 u0—4ywa0Œ4 go w wi0Ž1kszo0”2ci aplikacji KDE w dw¨®ch krokach:
+wybra0Œ4 model i port aparatu z listy w KControl, a nast0Ž1pnie
+odwo0’0ywa0Œ4 si0Ž1 do zawarto0”2ci aparatu przez URL kamera:/.
 
 %package kcolorchooser
 Summary:	Color chooser
-Summary(pl.UTF-8):	Program do wybierania kolorów
+Summary(pl.UTF-8):	Program do wybierania kolor¨®w
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdelibs >= %{version}
 
@@ -174,7 +174,7 @@ Requires:	kde4-kdelibs >= %{version}
 Color chooser.
 
 %description kcolorchooser -l pl.UTF-8
-Program do wybierania kolorów.
+Program do wybierania kolor¨®w.
 
 %package kfile
 Summary:	Graphic formats enhanced information
@@ -187,12 +187,12 @@ This package adds a fold to konqueror "file properties" dialog window
 with file enhanced informations.
 
 %description kfile -l pl.UTF-8
-Ten pakiet dodaje do okna dialogowego "w¿a¿ciwo¿ci pliku" konquerora
-dodatkow¿ zak¿adk¿ z rozszerzonymi informacjami o pliku.
+Ten pakiet dodaje do okna dialogowego "w0’0a0”2ciwo0”2ci pliku"
+konquerora dodatkow0Œ2 zak0’0adk0Ž1 z rozszerzonymi informacjami o pliku.
 
 %package kgamma
 Summary:	A monitor calibration tool
-Summary(pl.UTF-8):	Narz¿dzie do kalibracji monitora
+Summary(pl.UTF-8):	Narz0Ž1dzie do kalibracji monitora
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdebase >= %{version}
 
@@ -200,12 +200,12 @@ Requires:	kde4-kdebase >= %{version}
 A monitor calibration tool.
 
 %description kgamma -l pl.UTF-8
-Narz¿dzie do kalibracji monitora.
+Narz0Ž1dzie do kalibracji monitora.
 
 %package kolourpaint
 Summary:	KDE Painter
 Summary(pl.UTF-8):	Program graficzny KDE
-Summary(pt_BR.UTF-8):	Editor básico de imagens bitmap
+Summary(pt_BR.UTF-8):	Editor b¨¢sico de imagens bitmap
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdebase >= %{version}
 
@@ -216,12 +216,12 @@ A (very) simple painting program for KDE.
 (Bardzo) prosty program do rysowania pod KDE.
 
 %description kolourpaint -l pt_BR.UTF-8
-Editor básico de imagens bitmap.
+Editor b¨¢sico de imagens bitmap.
 
 %package kruler
 Summary:	KRuler
 Summary(pl.UTF-8):	Linijka dla KDE
-Summary(pt_BR.UTF-8):	Régua de pixels para a tela
+Summary(pt_BR.UTF-8):	R¨¦gua de pixels para a tela
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdebase >= %{version}
 
@@ -230,16 +230,16 @@ KRuler is a very simple application, with only one aim in life. To
 measure distances on your screen.
 
 %description kruler -l pl.UTF-8
-KRuler jest prost¿ aplikacj¿, z tylko jednym celem w ¿yciu: mierzenie
-odleg¿o¿ci na ekranie.
+KRuler jest prost0Œ2 aplikacj0Œ2, z tylko jednym celem w 0—4yciu:
+mierzenie odleg0’0o0”2ci na ekranie.
 
 %description kruler -l pt_BR.UTF-8
-Régua de pixels para a tela.
+R¨¦gua de pixels para a tela.
 
 %package ksane
 Summary:	Scanning tool
-Summary(pl.UTF-8):	Narz¿dzie do skanowania
-Summary(pt_BR.UTF-8):	Um programa de rasterização de imagens, baseado no SANE e libkscan
+Summary(pl.UTF-8):	Narz0Ž1dzie do skanowania
+Summary(pt_BR.UTF-8):	Um programa de rasteriza0Š40Š0o de imagens, baseado no SANE e libkscan
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdebase >= %{version}
 Obsoletes:	kde4-kdegraphics-kscanservice
@@ -250,11 +250,11 @@ Ksane is a KDE application that enables easy scanning using SANE
 libraries.
 
 %description ksane -l pl.UTF-8
-Ksane to aplikacja KDE umo¿liwiaj¿ca ¿atwe skanowanie przy u¿yciu
+Ksane to aplikacja KDE umo0—4liwiaj0Œ2ca 0’0atwe skanowanie przy u0—4yciu
 bibliotek SANE.
 
 %description ksane -l pt_BR.UTF-8
-Um programa de rasterização de imagens, baseado no SANE e libkscan.
+Um programa de rasteriza0Š40Š0o de imagens, baseado no SANE e libkscan.
 
 %package ksnapshot
 Summary:	KDE Snap Shot
@@ -269,9 +269,9 @@ capable of capturing images of either the whole desktop or just a
 single window. The images can then be saved in a variety of formats.
 
 %description ksnapshot -l pl.UTF-8
-KSnapshot to prosta aplikacja do robienia zrzutów ekranu. Potrafi
-przechwytywa¿ obraz ca¿ego pulpitu lub tylko pojedynczego okna. Obrazy
-mog¿ by¿ nast¿pnie zapisane w wielu formatach.
+KSnapshot to prosta aplikacja do robienia zrzut¨®w ekranu. Potrafi
+przechwytywa0Œ4 obraz ca0’0ego pulpitu lub tylko pojedynczego okna.
+Obrazy mog0Œ2 by0Œ4 nast0Ž1pnie zapisane w wielu formatach.
 
 %description ksnapshot -l pt_BR.UTF-8
 Programa de captura de tela.
@@ -287,12 +287,12 @@ KSVG is a KDE implementation of the Scalable Vector Graphics
 Specifications.
 
 %description svgpart -l pl.UTF-8
-KSVG stanowi implementacj¿ dla KDE specyfikacji skalowalnej grafiki
+KSVG stanowi implementacj0Ž1 dla KDE specyfikacji skalowalnej grafiki
 wektorowej (SVG - Scalable Vector Graphics).
 
 %package okular
 Summary:	KDE universal document viewer
-Summary(pl.UTF-8):	Uniwersalna przegl¿darka dokumentówdla KDE
+Summary(pl.UTF-8):	Uniwersalna przegl0Œ2darka dokument¨®w dla KDE
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdelibs >= %{version}
 Requires:	kio_msits >= %{version}
@@ -301,11 +301,11 @@ Requires:	kio_msits >= %{version}
 Okular is a universal document browser for KDE.
 
 %description okular -l pl.UTF-8
-Okular to uniwersalna przegl¿darka dokumentów dla KDE.
+Okular to uniwersalna przegl0Œ2darka dokument¨®w dla KDE.
 
 %package gwenview
 Summary:	Simple image viewer for KDE
-Summary(pl.UTF-8):	Prosta przegl¿darka obrazków dla KDE
+Summary(pl.UTF-8):	Prosta przegl0Œ2darka obrazk¨®w dla KDE
 Group:		X11/Applications/Graphics
 Requires:	kde4-kdelibs >= %{version}
 Obsoletes:	gwenview
@@ -319,11 +319,11 @@ Qt library, so it supports all image formats your Qt installation
 supports.
 
 %description gwenview -l pl.UTF-8
-Gwenview to przegl¿darka obrazków dla KDE. Ma okno z drzewem katalogów
-oraz okno z list¿ plików w celu zapewnienia ¿atwej nawigacji w
-hierarchii plików. Wczytywanie obrazków jest wykonywane przez
-bibliotek¿ Qt, wi¿c przegl¿darka obs¿uguje wszystkie formaty
-obs¿ugiwane przez zainstalowan¿ wersj¿ Qt.
+Gwenview to przegl0Œ2darka obrazk¨®w dla KDE. Ma okno z drzewem
+katalog¨®w oraz okno z list0Œ2 plik¨®w w celu zapewnienia 0’0atwej
+nawigacji w hierarchii plik¨®w. Wczytywanie obrazk¨®w jest wykonywane
+przez bibliotek0Ž1 Qt, wi0Ž1c przegl0Œ2darka obs0’0uguje wszystkie formaty
+obs0’0ugiwane przez zainstalowan0Œ2 wersj0Ž1 Qt.
 
 %package -n kde4-libkdcraw
 Summary:	KDcraw library
@@ -335,7 +335,7 @@ Obsoletes:	libkdcraw
 The KDcraw library is part of the KIPI Project.
 
 %description -n kde4-libkdcraw -l pl.UTF-8
-Biblioteka KDcraw jest cz¿¿ci¿ projektu KIPI.
+Biblioteka KDcraw jest cz0Ž10”2ci0Œ2 projektu KIPI.
 
 %package -n kde4-libkexiv2
 Summary:	libkexiv2 library
