@@ -8,13 +8,13 @@ Summary(es.UTF-8):	K Desktop Environment - Aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.5.3
+Version:	4.5.4
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	b5542bfaf9fb43775c48e2950ae05a9c
-Patch100: %{name}-branch.diff
+# Source0-md5:	bfc50bcb231571978c671d0be8d2d7d8
+Patch100:	%{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	Qt3Support-devel >= %{qtver}
 BuildRequires:	QtCore-devel >= %{qtver}
