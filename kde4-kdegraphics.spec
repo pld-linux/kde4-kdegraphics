@@ -8,12 +8,12 @@ Summary(es.UTF-8):	K Desktop Environment - Aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.5.5
+Version:	4.6.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	62a773576beba66f522323d872c86129
+# Source0-md5:	61961e75d203e3eab6f53744f2a3d9e6
 Patch100:	%{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	Qt3Support-devel >= %{qtver}
@@ -420,9 +420,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkexiv2.so
 %attr(755,root,root) %{_libdir}/libkdcraw.so
 %attr(755,root,root) %{_libdir}/libkipi.so
+%{_libdir}/cmake/Okular
 %{_includedir}/libksane
 %{_includedir}/okular
-%{_datadir}/apps/cmake/modules/FindOkular.cmake
 %{_datadir}/apps/cmake/modules/FindKSane.cmake
 %{_pkgconfigdir}/libkdcraw.pc
 %{_pkgconfigdir}/libkexiv2.pc
@@ -545,6 +545,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kde4/services/gvpart.desktop
 %{_desktopdir}/kde4/gwenview.desktop
 %{_datadir}/apps/solid/actions/gwenview_importer.desktop
+%{_datadir}/apps/solid/actions/gwenview_importer_camera.desktop
+%{_iconsdir}/*/*/actions/document-share.png
 %{_iconsdir}/*/*/apps/gwenview.png
 #%{_iconsdir}/*/scalable/apps/gwenview.svgz
 %{_kdedocdir}/en/gwenview
