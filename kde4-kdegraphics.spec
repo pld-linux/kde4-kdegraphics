@@ -1,6 +1,6 @@
 # TODO: real descs for okular and KIPI libs
 %define		_state		stable
-%define		qtver		4.7.1
+%define		qtver		4.7.2
 
 %define	orgname	kdegraphics
 Summary:	K Desktop Environment - Graphic Applications
@@ -8,12 +8,12 @@ Summary(es.UTF-8):	K Desktop Environment - Aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.6.1
-Release:	2
+Version:	4.6.2
+Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	9a0ca27211e309b57033c93c5c96268e
+# Source0-md5:	db3519433c9a91dbc4f1ba68d824d328
 Patch100:	%{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	Qt3Support-devel >= %{qtver}
@@ -421,9 +421,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdcraw.so
 %attr(755,root,root) %{_libdir}/libkipi.so
 %{_libdir}/cmake/Okular
+%{_libdir}/cmake/KSane
 %{_includedir}/libksane
 %{_includedir}/okular
-%{_datadir}/apps/cmake/modules/FindKSane.cmake
 %{_pkgconfigdir}/libkdcraw.pc
 %{_pkgconfigdir}/libkexiv2.pc
 %{_pkgconfigdir}/libkipi.pc
@@ -471,7 +471,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kolourpaint
 %{_desktopdir}/kde4/kolourpaint.desktop
 %{_iconsdir}/*/*/apps/kolourpaint.*
-%{_kdedocdir}/en/kolourpaint
+#%{_kdedocdir}/en/kolourpaint
 
 %files kruler
 %defattr(644,root,root,755)
@@ -479,7 +479,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kruler
 %{_desktopdir}/kde4/kruler.desktop
 %{_iconsdir}/*/*/apps/kruler.*
-%{_kdedocdir}/en/kruler
+#%{_kdedocdir}/en/kruler
 
 %files ksane
 %defattr(644,root,root,755)
@@ -495,7 +495,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde4/ksnapshot.desktop
 %{_iconsdir}/*/*/apps/ksnapshot.*
 %{_datadir}/dbus-1/interfaces/org.kde.ksnapshot.xml
-%{_kdedocdir}/en/ksnapshot
+#%{_kdedocdir}/en/ksnapshot
 
 %files svgpart
 %defattr(644,root,root,755)
@@ -549,7 +549,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/actions/document-share.png
 %{_iconsdir}/*/*/apps/gwenview.png
 #%{_iconsdir}/*/scalable/apps/gwenview.svgz
-%{_kdedocdir}/en/gwenview
+#%{_kdedocdir}/en/gwenview
 
 %files -n kde4-libkdcraw
 %defattr(644,root,root,755)
