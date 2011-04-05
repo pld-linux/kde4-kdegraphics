@@ -9,11 +9,11 @@ Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
 Version:	4.6.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	db3519433c9a91dbc4f1ba68d824d328
+# Source0-md5:	de7a1847deb60b444feabc84845f2284
 Patch100:	%{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	Qt3Support-devel >= %{qtver}
@@ -471,7 +471,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kolourpaint
 %{_desktopdir}/kde4/kolourpaint.desktop
 %{_iconsdir}/*/*/apps/kolourpaint.*
-#%{_kdedocdir}/en/kolourpaint
 
 %files kruler
 %defattr(644,root,root,755)
@@ -479,7 +478,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kruler
 %{_desktopdir}/kde4/kruler.desktop
 %{_iconsdir}/*/*/apps/kruler.*
-#%{_kdedocdir}/en/kruler
+%{_kdedocdir}/en/kruler
 
 %files ksane
 %defattr(644,root,root,755)
@@ -495,7 +494,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde4/ksnapshot.desktop
 %{_iconsdir}/*/*/apps/ksnapshot.*
 %{_datadir}/dbus-1/interfaces/org.kde.ksnapshot.xml
-#%{_kdedocdir}/en/ksnapshot
+%{_kdedocdir}/en/ksnapshot
 
 %files svgpart
 %defattr(644,root,root,755)
