@@ -9,11 +9,11 @@ Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
 Version:	4.6.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	de7a1847deb60b444feabc84845f2284
+# Source0-md5:	3aca3c307b745e7a6f6dd6b137600bdb
 Patch100:	%{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	Qt3Support-devel >= %{qtver}
@@ -471,6 +471,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kolourpaint
 %{_desktopdir}/kde4/kolourpaint.desktop
 %{_iconsdir}/*/*/apps/kolourpaint.*
+%{_kdedocdir}/en/kolourpaint
 
 %files kruler
 %defattr(644,root,root,755)
@@ -547,8 +548,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/solid/actions/gwenview_importer_camera.desktop
 %{_iconsdir}/*/*/actions/document-share.png
 %{_iconsdir}/*/*/apps/gwenview.png
-#%{_iconsdir}/*/scalable/apps/gwenview.svgz
-#%{_kdedocdir}/en/gwenview
+%{_iconsdir}/*/scalable/apps/gwenview.svgz
+%{_kdedocdir}/en/gwenview
 
 %files -n kde4-libkdcraw
 %defattr(644,root,root,755)
