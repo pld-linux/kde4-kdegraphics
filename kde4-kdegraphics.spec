@@ -8,12 +8,12 @@ Summary(es.UTF-8):	K Desktop Environment - Aplicaciones gráficas
 Summary(pl.UTF-8):	K Desktop Environment - Aplikacje graficzne
 Summary(pt_BR.UTF-8):	K Desktop Environment - Aplicações gráficas
 Name:		kde4-kdegraphics
-Version:	4.6.3
+Version:	4.6.4
 Release:	1
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{orgname}-%{version}.tar.bz2
-# Source0-md5:	26c2eca2d707f9fc69db87c0467e5849
+# Source0-md5:	91b52d9a7b5bd9874d5f947b4c196327
 Patch100:	%{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	Qt3Support-devel >= %{qtver}
@@ -422,6 +422,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkipi.so
 %{_libdir}/cmake/Okular
 %{_libdir}/cmake/KSane
+%{_datadir}/apps/cmake/modules/FindKSane.cmake
 %{_includedir}/libksane
 %{_includedir}/okular
 %{_pkgconfigdir}/libkdcraw.pc
